@@ -77,8 +77,8 @@ gulp.task 'build:dist', ['build'], ->
     .pipe(jsFilter.restore)
     .pipe(imgFilter = $.filter('**/*.{png,jpg,gif}', restore: true))
     .pipe($.imagemin(
-      progressive: true,
-      svgoPlugins: [removeViewBox: false],
+      progressive: true
+      svgoPlugins: [removeViewBox: false]
       use: [$.pngquant()]
     ))
     .pipe(imgFilter.restore)
