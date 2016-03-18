@@ -1,9 +1,13 @@
-do ->
-  $window = $(window)
-  $document = $(document)
-  $h1 = $('h1')
+$('html').addClass('js')
 
-  fitFontSize = ($target, maxWidth, maxHeight) ->
+# pp = console.log.bind console
+
+$ ($) ->
+  $window = $(window)
+  $body = $('body')
+  $screen = $('<div>').addClass('screen').appendTo($body)
+
+  resizeFitFontSize = ($target, maxWidth, maxHeight) ->
     fontSize = 10
     $sizer = $target
       .clone()
@@ -17,98 +21,173 @@ do ->
       ).insertAfter($target)
     sizerWidth = $sizer.outerWidth()
     sizerHeight = $sizer.outerHeight()
+    return unless sizerWidth && sizerHeight
     while sizerWidth < maxWidth && sizerHeight < maxHeight
-      fontSize *= if sizerWidth < maxWidth then maxWidth / sizerWidth else maxHeight / sizerHeight
+      scaleW = maxWidth / sizerWidth
+      scaleH = maxHeight / sizerHeight
+      break if scaleW <= 1 && scaleW <= 1
+      scaleW = scaleH if scaleW <= 1
+      scaleH = scaleW if scaleH <= 1
+      fontSize *= Math.min(scaleW, scaleH)
       $sizer.css('fontSize', fontSize + 'px')
       sizerWidth = $sizer.outerWidth()
       sizerHeight = $sizer.outerHeight()
     while sizerWidth >= maxWidth || sizerHeight >= maxHeight
-      fontSize -= Math.min((fontSize * (1 - (if sizerWidth >= maxWidth then maxWidth / sizerWidth else maxHeight / sizerHeight))) || 1, 1)
+      scaleW = maxWidth / sizerWidth
+      scaleH = maxHeight / sizerHeight
+      scaleW = scaleH if scaleW < 1
+      scaleH = scaleW if scaleH < 1
+      fontSize -= Math.max(fontSize * (1 - Math.min(scaleW, scaleH)), 1)
       $sizer.css('fontSize', fontSize + 'px')
       sizerWidth = $sizer.outerWidth()
       sizerHeight = $sizer.outerHeight()
     $sizer.remove()
     $target.css('fontSize', fontSize + 'px')
     $target.css(
-      marginTop: (-$target.outerHeight() / 2) + 'px'
-      marginLeft: (-$target.outerWidth() / 2) + 'px'
+      marginTop: -($target.outerHeight() / 2)
+      marginLeft: -($target.outerWidth() / 2)
     )
 
-  fade = (fn) ->
-    return $h1 unless fn
-    $h1.fadeIn 1500, ->
-      $h1.fadeOut 1500, fn
-      return
+  fitScreen = ->
+    resizeFitFontSize(
+      $screen
+      $window.width() - parseInt($body.css('marginLeft'), 10) - parseInt($body.css('marginRight'), 10)
+      $window.height() - parseInt($body.css('marginTop'), 10) - parseInt($body.css('marginBottom'), 10)
+    )
     return
 
-  fit = (html, fn) ->
-    $h1.html(html) if html
-    fitFontSize($h1, $window.width() - 20, $window.height() - 20)
-    fade(fn)
-    return
+  $window.resize(fitScreen)
+  fitScreen()
 
-  countdown = (tmpl, deadline) ->
-    diff = (deadline - Date.now()) / 1000 | 0
-    return null if diff <= 0
-    pat = {}
-    res = {}
-    reg = /\((.*?){([dhis])}(.*?)\)/g
-    pat[m[2]] = true while m = reg.exec(tmpl)
-    [['d', 86400], ['h', 3600], ['i', 60]].forEach (pair) ->
-      if pat[pair[0]] && diff > pair[1]
-        res[pair[0]] = (diff / pair[1] | 0)
-        diff %= pair[1]
-      return
-    res.s = diff
-    tmpl.replace(reg, (x, y, z, w) -> if res[z] then y + res[z] + w else '')
-
-  reload = ->
-    deadlines = [
-      +(new Date(2016, 1, 13))
-      +(new Date(2016, 1, 13, 7, 26))
-      +(new Date(2016, 1, 13, 10, 15))
-      +(new Date(2016, 1, 15, 19))
-      +(new Date(2016, 2, 1))
+  inputs = []
+  do ->
+    keyTable =
+      'ん': ['ｎ']
+      'きょ': ['ｋ', 'ｋｙ', 'きょ']
+      'きゅ': ['ｋ', 'ｋｙ', 'きゅ']
+      'しょ': ['ｓ', 'ｓｙ', 'しょ']
+      'しゅ': ['ｓ', 'ｓｙ', 'しゅ']
+      'じゅ': ['ｊ', 'じゅ']
+    keyTableData =
+      'ｋ': 'かきくけこ'
+      'ｇ': 'がぎぐげご'
+      'ｓ': 'さしすせそ'
+      'ｚ': 'ざじずぜぞ'
+      'ｔ': 'たちつてと'
+      'ｄ': 'だぢづでど'
+      'ｎ': 'なにぬねの'
+      'ｈ': 'はまやらわ'
+      'ｂ': 'ばびぶべぼ'
+      'ｐ': 'ぱぴぷぺぽ'
+      'ｍ': 'まみむめも'
+      'ｙ': 'やゆよ'
+      'ｒ': 'らりるれろ'
+      'ｗ': 'わを'
+    for k1 of keyTableData
+      for k2 in keyTableData[k1].split('')
+        keyTable[k2] = [k1, k2]
+    htmlsGroup = [
+      [
+        ['span', 'ぜんきゅう', '全球']
+        ['span', 'せいえい', '精鋭']
+      ]
+      300
+      [
+        ['span', 'ぐろーばる', 'グローバル']
+        ['span', 'えりーと', 'エリート']
+        ['br']
+        ['span', '２０１６ねん', '二〇一六年']
+        ['span', 'ごがつ', '五月']
+        ['span', 'ついたち', '一日']
+        ['br']
+        ['a href="http://bunfree.net/?tokyo_bun22"', 'だいにじゅうにかい', '第二十二回']
+        ['a href="http://bunfree.net/?tokyo_bun22"', 'ぶんがく', '文学']
+        ['a href="http://bunfree.net/?tokyo_bun22"', 'ふりま', 'フリマ']
+        ['a href="http://bunfree.net/?tokyo_bun22"', 'とうきょう', '東京']
+      ]
+      300
+      [
+        ['span', 'どうじん', '同人']
+        ['span', 'SF', 'SF']
+        ['span', 'しょうせつ', '小説']
+        ['span', 'あんそろじー', 'アンソロジー']
+        ['br']
+        ['span', 'WORK　', 'WORK　']
+        ['span', 'せりえんと', 'セリエント']
+        ['span', '（かしょう）', '（仮称）']
+        ['br']
+        ['span', '１０００えん', '１０００円']
+        ['span', 'で', 'で']
+        ['span', 'はんぷよてい', '頒布予定']
+      ]
+      500
+      [
+        ['span', 'とうはんしゃせん', '登坂車線']
+        ['br']
+        ['span', 'くれーたー', 'クレーター']
+        ['br']
+        ['span', 'せりえんと', 'セリエント']
+        ['br']
+        ['span', 'Lovely Fairy With me', 'Lovely Fairy With me']
+        ['br']
+        ['span', 'たくと', 'タクト']
+        ['span', 'くん', 'くん']
+        ['br']
+        ['br']
+        ['span', 'を', 'を']
+        ['span', 'しゅうろく', '収録']
+        ['span', 'よてい', '予定']
+      ]
+      500
+      [
+        ['span', 'おれたちは', 'おれたちは']
+        ['br']
+        ['span', '\u201Cやすまない\u201D', '\u201C休まない\u201D']
+      ]
+      1000
     ]
-    messages = [
-      '<span><small>〆切まで</small><br>(<big>{d}</big>日)(<big>{h}</big>時間)(<big>{i}</big>分)(<big>{s}</big>秒)</span>'
-      '<span class="mgold"><small>東京駅出発まで</small><br>({h}時間)({i}分)({s}秒)</span>'
-      '<span class="mgold"><small>名古屋到着まで</small><br>({h}時間)({i}分)({s}秒)</span>'
-      '<span class="mgold">絶対作文合宿</span>'
-      '<span class="mred"><small>初稿〆切まで</small><br>(<big>{d}</big>日)(<big>{h}</big>時間)(<big>{i}</big>分)(<big>{s}</big>秒)</span>'
-    ]
-    index = 0
 
-    fit 'グローバルエリート', ->
-      fit '全球精英', ->
-        fit 'おれたちは<br>\u201C休まない\u201D', ->
-          $h1.addClass('illust').css(marginTop: 0, marginLeft: 0).html('<img src="top.jpg">')
-          fade ->
-            $h1.removeClass('illust')
-            tid = setInterval ->
-              while index < deadlines.length
-                text = countdown(messages[index], deadlines[index])
-                if text
-                  $h1.is(':hidden') && $h1.fadeIn(1500)
-                  fit(text)
-                  return
-                ++index
-              clearInterval(tid)
-              $h1.is(':hidden') || $h1.fadeOut(1500)
-              fit '五月一日', ->
-                fit('文学フリマ東京', reload)
-                return
-              return
-            , 500
-            return
-          return
-        return
-      return
-
-    $window.resize ->
-      fit()
-      return
+    for htmls in htmlsGroup
+      if typeof htmls == 'number'
+        lastInput = inputs[inputs.length - 1]
+        continue unless lastInput
+        inputed = lastInput[1]
+        while true
+          t = inputed.replace(/[^<>](<\/\w+>)$/, '$1')
+          unless inputed == t
+            inputs.push([25, inputed = t])
+            continue
+          t = inputed.replace(/<(\w+)[^<>]*\/?>$/, '')
+          unless inputed == t
+            inputs.push([25, inputed = t])
+            continue
+          t = inputed.replace(/<(\w+)[^<>]*><\/\1>$/, '')
+          unless inputed == t
+            inputed = t
+            continue
+          break
+        inputs.push([htmls, ''])
+      else
+        inputed = ''
+        for d in htmls
+          if d.length == 1
+            inputs.push([50, inputed += "<#{d[0]}/>"])
+          else
+            inputing = "<#{d[0]} class=\"i\">"
+            closetag = "</#{d[0].match(/^\w+/)[0]}>"
+            for char in d[1].match(/っ.|.[ゃゅょ]|./g)
+              inputs.push([60, inputed + inputing + k + closetag]) for k in keyTable[char] || [char]
+              inputing += if k == 'ｎ' then 'ん' else k
+            inputs.push([50, inputed + "<#{d[0]} class=\"i\">#{d[2]}#{closetag}"])
+            inputs.push([200, inputed += "<#{d[0]} class=\"f\">#{d[2]}#{closetag}"])
     return
-  (new Image).src = 'top.jpg'
-  $window.load(reload)
-  return
+
+  index = 0
+  typing = ->
+    input = inputs[index]
+    $screen.html(input[1] + '<span class="c">|</span>')
+    fitScreen()
+    ++index
+    index %= inputs.length
+    setTimeout(typing, input[0])
+  typing()
