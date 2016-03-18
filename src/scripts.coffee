@@ -108,13 +108,13 @@ $ ($) ->
       300
       [
         ['span', 'どうじん', '同人']
-        ['span', 'SF', 'SF']
+        ['span', ' SF ']
         ['span', 'しょうせつ', '小説']
         ['span', 'あんそろじー', 'アンソロジー']
         ['br']
-        ['span', 'WORK　', 'WORK　']
+        ['span', 'WORK ']
         ['span', 'せりえんと', 'セリエント']
-        ['span', '（かしょう）', '（仮称）']
+        ['span', '（かり）', '（仮）']
         ['br']
         ['span', '１０００えん', '１０００円']
         ['span', 'で', 'で']
@@ -128,7 +128,7 @@ $ ($) ->
         ['br']
         ['span', 'せりえんと', 'セリエント']
         ['br']
-        ['span', 'Lovely Fairy With me', 'Lovely Fairy With me']
+        ['span', 'Lovely Fairy With me']
         ['br']
         ['span', 'たくと', 'タクト']
         ['span', 'くん', 'くん']
@@ -172,9 +172,18 @@ $ ($) ->
         for d in htmls
           if d.length == 1
             inputs.push([50, inputed += "<#{d[0]}/>"])
+            continue
+
+          closetag = "</#{d[0].match(/^\w+/)[0]}>"
+          if d.length == 2
+            inputing = "<#{d[0]} class=\"f\">"
+            for k in d[1].split('')
+              k = '&nbsp;' if k == ' '
+              inputs.push([60, inputed + inputing + k + closetag])
+              inputing += k
+            inputs.push([100, inputed += "<#{d[0]} class=\"f\">#{d[1]}#{closetag}"])
           else
             inputing = "<#{d[0]} class=\"i\">"
-            closetag = "</#{d[0].match(/^\w+/)[0]}>"
             for char in d[1].match(/っ.|.[ゃゅょ]|./g)
               inputs.push([60, inputed + inputing + k + closetag]) for k in keyTable[char] || [char]
               inputing += if k == 'ｎ' then 'ん' else k
