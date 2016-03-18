@@ -188,7 +188,7 @@ $ ($) ->
               inputs.push([60, inputed + inputing + k + closetag]) for k in keyTable[char] || [char]
               inputing += if k == 'ｎ' then 'ん' else k
             inputs.push([50, inputed + "<#{d[0]} class=\"i\">#{d[2]}#{closetag}"])
-            inputs.push([(if d[1] == d[2] then 50 else 200), inputed += "<#{d[0]} class=\"f\">#{d[2]}#{closetag}"])
+            inputs.push([(if d[1] == d[2] then 100 else 200), inputed += "<#{d[0]} class=\"f\">#{d[2]}#{closetag}"])
     return
 
   index = 0
