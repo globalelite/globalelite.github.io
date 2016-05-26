@@ -2,38 +2,52 @@ doctype
 html
   head
     title グローバルエリート
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css')
     link(rel='stylesheet', href='styles.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='scripts.js')
   body
-    .wrapper
+    section
       h1 グローバルエリート
-      p
-        | 二〇一六年五月一日
-        br
-        a(href='http://bunfree.net/?tokyo_bun22') 第二十二回文学フリマ東京
-        | （
-        a(href='https://www.google.co.jp/maps/place/%E6%9D%B1%E4%BA%AC%E6%B5%81%E9%80%9A%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E7%AC%AC%E4%B8%80%E5%B1%95%E7%A4%BA%E5%A0%B4/@35.5808419,139.7483595,15z/data=!4m2!3m1!1s0x0:0x3c65b91947c29bba') 東京流通センター第一展示場
-        | ）
-        a(href='https://c.bunfree.net/c/tokyo22/!/%E3%82%A8/34') エ-34
-      p
-        | 同人SF小説アンソロジー
-        br
-        | WORK セリエント
-        br
-        | 1500円で頒布決定
-      h2 収録作品
-      p
-        | 登坂車線
-        br
-        | クレーター
-        br
-        | セリエント
-        br
-        | Lovely Fairy With me
-        br
-        | タクトくん
-      p 近日、詳細情報公開！
-      footer
-        p &copy; 2016 グローバルエリート
+
+      section
+        h2 頒布作品
+
+        section
+          h3 WORK セリエント
+
+          dl
+            dt ジャンル
+            dd 同人SF小説アンソロジー
+            dt 発行日
+            dd 二〇一六年五月一日
+            dt 定価
+            dd 2,000円
+
+          p 倫理を持たぬ傭兵部隊。未来を予測するＡＩ。ふたつの異端が出会う時、人類は新たな地平を歩み出す――。機械が人間を凌駕するその瞬間を描いた表題作をはじめ、個性あふれる五篇の中短編を収録したＳＦアンソロジー。少女へと復讐を誓うサラリーマン、疲れた主人のために一計を案じる全自動炊飯器、霧に覆われた街に現れる「かみさま」とわたし、親友を亡くした青年と妖精……世界で活躍する異端児らによる五者五様の世界観はいずれも鮮烈にして独特！
+
+          dl
+            dt 収録作品
+            dd
+              ul
+                li 登坂車線（架旗透）
+                li クレーター（東京ニトロ）
+                li セリエント（髙座創）
+                li Lovely Fairy With me（維嶋津）
+                li タクトくん（杏野丞）
+            dt 販売元
+            dd
+              ul
+                li Kindle Store （準備中）
+            dt 特別頒布イベント
+            dd
+              ul
+                li
+                  a(href='http://bunfree.net/?tokyo_bun22') 第二十二回文学フリマ東京
+                  | にて初版極少数部を特別価格にて頒布
+                  | （
+                  a(href='https://c.bunfree.net/p/tokyo22/4792') 文学フリマWebカタログ
+                  | ）
+
+    footer
+      p &copy; 2016 グローバルエリート
