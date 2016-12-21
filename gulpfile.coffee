@@ -13,10 +13,10 @@ gulp.task 'copy:files', ->
   gulp.src('src/**/*.{html,js,css,json,png,jpg,gif,mp3}')
     .pipe(gulp.dest('.tmp'))
 
-gulp.task 'build:jade', ->
-  gulp.src('src/**/*.jade')
+gulp.task 'build:pug', ->
+  gulp.src('src/**/*.{pug,jade}')
     .pipe($.plumber())
-    .pipe($.jade(pretty: true))
+    .pipe($.pug())
     .pipe($.plumber.stop())
     .pipe(gulp.dest('.tmp'))
 
@@ -38,14 +38,14 @@ gulp.task 'build:stylus', ->
 gulp.task 'build', [
   'copy:config-files'
   'copy:files'
-  'build:jade'
+  'build:pug'
   'build:coffee'
   'build:stylus'
 ]
 
 gulp.task 'watch', ['build'], ->
   gulp.watch 'src/**/*.{html,js,css,json}', ['copy:files']
-  gulp.watch 'src/**/*.jade', ['build:jade']
+  gulp.watch 'src/**/*.{pug,jade}', ['build:pug']
   gulp.watch 'src/**/*.coffee', ['build:coffee']
   gulp.watch 'src/**/*.styl', ['build:stylus']
   return
