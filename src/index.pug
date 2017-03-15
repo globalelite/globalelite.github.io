@@ -1,0 +1,92 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='UTF-8')
+    title グローバルエリート
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='styles.css')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.3/processing.min.js')
+    script(src='scripts.js')
+
+  body
+    header
+      h1
+        img(src='emblem.svg', alt='', height='50')
+        img(src='logo.svg', alt='グローバルエリート', height='50')
+
+    main
+      article.splash
+        .bgm
+          audio(src='bgm.mp3', loop)
+          a.bgm-action(href='javascript:void(runBgm())')
+            i.fa.fa-circle-o-notch.fa-spin(area-hidden='true')
+          a.bgm-source(href='https://soundcloud.com/al-halfmoon/regl0vl-loop-ver', target='_blank') Re&amp;Gl0v@l-loop ver- by et al.
+        canvas(width='0', height='0', data-processing-sources='reboot.pde')
+        h2 Reboot on May 7, 2017
+
+      article
+        h2 WORK セリエント
+
+        figure
+          img(src='https://images-fe.ssl-images-amazon.com/images/I/41TC%2BcUhMTL._SL250_.jpg', alt='')
+
+        dl
+          dt ジャンル
+          dd 同人SF小説アンソロジー
+          dt 紹介
+          dd 倫理を持たぬ傭兵部隊。未来を予測するＡＩ。ふたつの異端が出会う時、人類は新たな地平を歩み出す――。機械が人間を凌駕するその瞬間を描いた表題作をはじめ、個性あふれる五篇の中短編を収録したＳＦアンソロジー。少女へと復讐を誓うサラリーマン、疲れた主人のために一計を案じる全自動炊飯器、霧に覆われた街に現れる「かみさま」とわたし、親友を亡くした青年と妖精……世界で活躍する異端児らによる五者五様の世界観はいずれも鮮烈にして独特！
+          dt 収録作品
+          dd
+            ul
+              li 登坂車線（架旗透）
+              li クレーター（東京ニトロ）
+              li セリエント（髙座創）
+              li Lovely Fairy With me（維嶋津）
+              li タクトくん（杏野丞）
+          dt 刊行日
+          dd 二〇一六年五月一日
+          dt 電子版
+          dd
+            ul.inline
+              li
+                a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B01G9RQEN4?tag=globalelitesf-22', target='_blank')
+                  i.fa.fa-amazon(aria-hidden='true')
+                  | Kindle Store
+          dt 書籍版
+          dd
+            ul
+              li
+                a(href='http://bunfree.net/?tokyo_bun22', target='_blank') 第二十二回文学フリマ東京
+                | にて初版極少数部を特別価格にて頒布（
+                a(href='https://c.bunfree.net/p/tokyo22/4792', target='_blank') 文学フリマWebカタログ
+                | ）
+
+    aside
+      h2 メンバー
+      dl
+        dt 髙座創
+        dd
+          | 最高サークル責任者。
+          a(href='https://twitter.com/TsukuruTakakura', target='_blank') Twitter
+        dt 架旗透
+        dd
+          a(href='https://kakuyomu.jp/users/Hodler', target='_blank') カクヨム
+        dt 維嶋津
+        dd
+          a(href='https://kakuyomu.jp/users/Shin_Ishima', target='_blank') カクヨム
+        dt 東京ニトロ
+        dd
+          a(href='http://adachionconstruction.web.fc2.com/', target='_blank') ウェブサイト
+        dt 杏野丞
+        dd
+          a(href='http://efuden.web.fc2.com/', target='_blank') ウェブサイト
+
+    footer
+      p
+        a.btn.btn-twitter(href='https://twitter.com/GlobalEliteSF', target='_blank')
+          i.fa.fa-twitter(aria-hidden='true')
+          | @GlobalEliteSF
+      p &copy; 2016 グローバルエリート
