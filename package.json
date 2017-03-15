@@ -8,22 +8,21 @@
     "deploy": "rm -rf .tmp dist && gulp deploy"
   },
   "devDependencies": {
-    "coffee-script": "^1.12.2",
+    "coffee-script": "^1.12.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
-    "gulp-coffee": "^2.3.3",
-    "gulp-csso": "^2.0.0",
+    "gulp-coffee": "^2.3.4",
+    "gulp-csso": "^3.0.0",
     "gulp-filter": "^3.0.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
-    "gulp-load-plugins": "^1.4.0",
+    "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.1.0",
-    "gulp-pug": "^3.2.0",
+    "gulp-pug": "^3.3.0",
     "gulp-stylus": "^2.6.0",
-    "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.7",
+    "gulp-uglify": "^2.1.0",
     "gulp-webserver": "^0.9.1",
     "imagemin-pngquant": "^5.0.0"
   }
