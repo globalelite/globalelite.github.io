@@ -1,0 +1,29 @@
+doctype html
+html(lang='ja')
+  head
+    block meta
+      meta(charset='UTF-8')
+    block styles
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css')
+      link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+      link(rel='stylesheet', href='styles.css')
+    block scripts
+      script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+
+  body
+    header
+      h1
+        img(src='emblem.svg', alt='', height='50')
+        img(src='logo.svg', alt='グローバルエリート', height='50')
+
+    block contents
+      main
+        block main
+
+    footer
+      p
+        a.btn.btn-twitter(href='https://twitter.com/GlobalEliteSF', target='_blank')
+          i.fa.fa-twitter(aria-hidden='true')
+          | @GlobalEliteSF
+      p &copy; 2016 グローバルエリート
