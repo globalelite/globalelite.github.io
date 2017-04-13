@@ -58,8 +58,8 @@ gulp.task 'serve', ['watch'], ->
   return
 
 gulp.task 'build:dist', ['build'], ->
-  gulp.src('.tmp/{.*,**/*}')
-    .pipe(htmlFilter = $.filter('**/*.html', restore: true))
+  gulp.src('.tmp/**/{.*,*}')
+    .pipe(htmlFilter = $.filter('.tmp/**/*.html', restore: true))
     .pipe($.htmlmin(
       removeComments: true
       collapseWhitespace: true
@@ -69,13 +69,13 @@ gulp.task 'build:dist', ['build'], ->
       removeStyleLinkTypeAttributes: true
     ))
     .pipe(htmlFilter.restore)
-    .pipe(cssFilter = $.filter('**/*.css', restore: true))
+    .pipe(cssFilter = $.filter('.tmp/**/*.css', restore: true))
     .pipe($.csso())
     .pipe(cssFilter.restore)
-    .pipe(jsFilter = $.filter('**/*.js', restore: true))
+    .pipe(jsFilter = $.filter('.tmp/**/*.js', restore: true))
     .pipe($.uglify(preserveComments: 'license'))
     .pipe(jsFilter.restore)
-    .pipe(imgFilter = $.filter('**/*.{png,jpg,gif,svg}', restore: true))
+    .pipe(imgFilter = $.filter('.tmp/**/*.{png,jpg,gif,svg}', restore: true))
     .pipe($.imagemin(
       progressive: true
       svgoPlugins: [removeViewBox: false]
