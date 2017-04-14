@@ -1,5 +1,5 @@
 doctype html
-html(lang='ja')
+html(lang='ja', prefix='og: http://ogp.me/ns#')
   head
     block meta
       meta(charset='UTF-8')
@@ -8,6 +8,9 @@ html(lang='ja')
       link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css')
       link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
       link(rel='stylesheet', href='/styles.css')
+    block info
+      link(rel='shortcut icon', href='/favicon.ico')
+      link(rel='apple-touch-icon', sizes='152x152', href='/apple-touch-icon.png')
     block scripts
       script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
 

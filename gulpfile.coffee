@@ -10,7 +10,7 @@ gulp.task 'copy:config-files', ->
     .pipe(gulp.dest('.tmp'))
 
 gulp.task 'copy:files', ->
-  gulp.src('src/**/*.{html,js,css,json,pde,png,jpg,gif,svg,mp3,ttf,woff}')
+  gulp.src('src/**/*.{html,js,css,json,pde,png,jpg,gif,svg,ico,mp3,ttf,woff}')
     .pipe(gulp.dest('.tmp'))
 
 gulp.task 'build:pug', ->
