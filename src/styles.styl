@@ -61,12 +61,11 @@ a
 img
   vertical-align bottom
 
-h1
-  img
-    vertical-align middle
+h1 > img
+  vertical-align middle
 
-    + img
-      margin-left 12px
+  + img
+    margin-left 12px
 
 h2
 dt
@@ -94,6 +93,15 @@ dd
 figure
   margin-left 0
   margin-right 0
+
+figure
+body > footer
+  text-align center
+  overflow hidden
+
+body > footer
+  color #666
+  font-size 85%
 
 container-selectors = "body > header, body > main > article, body > main > form, body > aside, body > footer"
 
@@ -132,17 +140,19 @@ container-selectors = "body > header, body > main > article, body > main > form,
     + dl
       margin-left (width-image + margin)
 
-body > main > article::after
-  display block
-  content ''
-  margin-left auto
-  margin-right auto
-  border-style none
-  width 25%
-  max-width 8em
-  height 10px
-  background-image linear-gradient(#666, #666 33.33%, transparent 33.33%, transparent 100%)
-  background-size 100% 3px
+body > main > article
+body > aside
+  &::after
+    display block
+    content ''
+    margin-left auto
+    margin-right auto
+    border-style none
+    width 25%
+    max-width 8em
+    height 10px
+    background-image linear-gradient(#666, #666 33.33%, transparent 33.33%, transparent 100%)
+    background-size 100% 3px
 
 .btn
   btn-border-color = rgba(0,0,0,0.2)
@@ -188,16 +198,6 @@ body > main > article::after
   color #fff
   background-color #1b95e0
 
-body > footer
-main figure
-.splash
-  text-align center
-  overflow hidden
-
-body > footer
-  color #666
-  font-size 85%
-
 body > main > article.splash
   max-width initial
   padding-left 0
@@ -205,13 +205,29 @@ body > main > article.splash
 
 .splash
   position relative
+  text-align center
+  overflow hidden
 
-  h2
-    font-family 'Ruthless Wreckin ONE'
-    font-size 2em
+  .bgm
+    display none
+    position absolute
+    font-size 85%
+    left 1em
+    top 1em
+    padding .5em
+    border-radius 2em
+    background #333
 
-    @media (min-width: breakpoint-huge)
-      font-size (2em * (breakpoint-huge / breakpoint-large))
+    > .bgm-action
+      display inline-block
+      text-align center
+      width 1.5em
+
+    > .bgm-source
+      display none
+
+    &:hover > .bgm-source
+      display inline
 
   canvas
     width 100%
@@ -230,23 +246,9 @@ body > main > article.splash
         margin (margin / -2) 0 0
         transform translate(0, -50%)
 
-   .bgm
-     display none
-     position absolute
-     font-size 85%
-     left 1em
-     top 1em
-     padding .5em
-     border-radius 2em
-     background #333
+  h2
+    font-family 'Ruthless Wreckin ONE'
+    font-size 2em
 
-     > .bgm-action
-       display inline-block
-       text-align center
-       width 1.5em
-
-     > .bgm-source
-       display none
-
-     &:hover > .bgm-source
-       display inline
+    @media (min-width: breakpoint-huge)
+      font-size (2em * (breakpoint-huge / breakpoint-large))

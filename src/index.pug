@@ -14,14 +14,14 @@ append meta
 
 append scripts
   script(src='//cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.3/processing.min.js')
-  script(src='scripts.js')
+  script(src='/scripts.js')
 
 append main
   article.splash
     .bgm
-      audio(src='bgm.mp3', loop)
-      a.bgm-action(href='javascript:void(runBgm())')
+      a.bgm-action(href='javascript:void 0')
         i.fa.fa-circle-o-notch.fa-spin(area-hidden='true')
+        audio(src='bgm.mp3', loop)
       a.bgm-source(href='https://soundcloud.com/al-halfmoon/regl0vl-loop-ver', target='_blank') Re&amp;Gl0v@l-loop ver- by et al.
     canvas(width='0', height='0', data-processing-sources='reboot.pde')
     h2
@@ -61,7 +61,7 @@ append main
     h2 WORK セリエント
 
     figure
-      img(src='https://images-fe.ssl-images-amazon.com/images/I/41TC%2BcUhMTL._SL250_.jpg', width=176, height=250, alt='')
+      img(src='https://d3n98kyr7trnfl.cloudfront.net/paperclip/products/pictures/9ac90399d75a102ef7fc3522047e0a12a90f7872_large.jpg?1460133686', width=176, alt='')
 
     dl
       dt ジャンル

@@ -1,5 +1,5 @@
 $ ($) ->
-  $('main article').each ->
+  $('main>article').each ->
     $this = $(this)
     $dl = $this.find('dl')
     return unless $dl.length
@@ -9,28 +9,32 @@ $ ($) ->
       $('<dd>').text($h2.text())
     )
     $h2.remove()
-    $dl.find('dt').filter(-> $(this).text() == '電子版').each ->
-      $this.find('figure').append($(this).next('dd').find('ul').clone())
-      return
+    $dl.find('dt').filter(-> $(this).text() == '電子版').find('+dd>ul').clone().appendTo($this.find('figure'))
     return
 
 $ ($) ->
   return unless window.Audio
-  $('.bgm').show()
-  $bgmActionIcon = $('.bgm>.bgm-action>i.fa').attr('class', 'fa fa-play')
-  audio = $('audio')[0]
+
+  $bgm = $('.bgm').eq(0)
+  return unless $bgm.length
+
+  $bgm.show()
+  $bgmActionIcon = $bgm.find('.bgm-action>i.fa').attr('class', 'fa fa-play')
+  $bgmAction = $bgmActionIcon.parent()
+  audio = $bgmAction.find('audio')[0]
   audio.addEventListener 'play', ->
     $bgmActionIcon.attr('class', 'fa fa-pause')
     return
   audio.addEventListener 'pause', ->
     $bgmActionIcon.attr('class', 'fa fa-play')
     return
-  window.runBgm = ->
-    audio[if audio.paused then 'play' else 'pause']()
-    return
   audio.autoplay = true
+  $bgmAction.click ->
+    audio[if audio.paused then 'play' else 'pause']()
+    false
 
   return unless window.AudioContext
+
   audioCtx = new AudioContext
   analyser = audioCtx.createAnalyser()
   analyser.fftSize = 32
@@ -63,5 +67,3 @@ $ ($) ->
 
   requestAnimationFrame(render)
   return
-
-$('html').addClass('js')

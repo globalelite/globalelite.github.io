@@ -2,8 +2,8 @@ Dot[] dots = new Dot[100];
 int speed = 12;
 
 void setup() {
-  frameRate(20);
-  size(640, 360);
+  frameRate(10);
+  size(640, 180);
   background(0);
   strokeWeight(1);
   smooth();
