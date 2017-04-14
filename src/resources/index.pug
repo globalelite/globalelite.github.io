@@ -1,0 +1,53 @@
+extends ../.layout
+
+append meta
+  title リソース | グローバルエリート
+
+append styles
+  link(rel='stylesheet', href='styles.css')
+
+append scripts
+  script(src='scripts.js')
+
+append main
+  form#config
+    dl
+      dt 種類
+      dd
+        label
+          input(type='radio', name='type', value='emblem')
+          | エンブレム
+        label
+          input(type='radio', name='type', value='logo')
+          | ロゴ
+        label
+          input(type='radio', name='type', value='horizontal', checked)
+          | 両方（水平）
+        label
+          input(type='radio', name='type', value='vertical')
+          | 両方（垂直）
+        label
+          input(type='radio', name='type', value='emblem-ge')
+          | Ge
+      dt 色
+      dd
+        label
+          input(type='radio', name='color', value='white')
+          | 白＋背景なし
+        label
+          input(type='radio', name='color', value='white-on-black')
+          | 白＋背景黒
+        label
+          input(type='radio', name='color', value='black')
+          | 黒＋背景なし
+        label
+          input(type='radio', name='color', value='black-on-white', checked)
+          | 黒＋背景白
+      dt 大きさ
+      dd
+        input(type='number', name='size', value='81', min='1')
+        label
+          input(type='checkbox', name='margin', value='yes', checked)
+          | 余白
+
+  #resource

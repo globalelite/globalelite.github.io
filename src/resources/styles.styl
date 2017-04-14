@@ -1,0 +1,30 @@
+#config > dl
+  > dt
+    float left
+    width 5em
+    overflow hidden
+    clear left
+    text-align right
+    text-overflow ellipsis
+    white-space nowrap
+
+  > dd
+    margin-left 6em
+
+    input[type="radio"]
+    input[type="checkbox"]
+      margin-left .5em
+      margin-right .5em
+
+pattern1 = #fff
+pattern2 = #c0c0c0
+pattern-size = 15px
+
+#resource
+  padding 10px
+  overflow auto
+  background-color pattern1
+  background-image linear-gradient(45deg, pattern2 25%, transparent 25%, transparent 75%, pattern2 75%, pattern2), linear-gradient(45deg, pattern2 25%, transparent 25%, transparent 75%, pattern2 75%, pattern2)
+  background-position 0 0, pattern-size pattern-size
+  background-size (pattern-size * 2) (pattern-size * 2)
+  text-align center
