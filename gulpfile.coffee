@@ -3,6 +3,7 @@ $ = require('gulp-load-plugins')(
   pattern: ['gulp-*', '*']
   rename:
     'imagemin-pngquant': 'pngquant'
+    'imagemin-mozjpeg': 'mozjpeg'
 )
 
 gulp.task 'copy:config-files', ->
@@ -76,11 +77,13 @@ gulp.task 'build:dist', ['build'], ->
     .pipe($.uglify(preserveComments: 'license'))
     .pipe(jsFilter.restore)
     .pipe(imgFilter = $.filter('.tmp/**/*.{png,jpg,gif,svg}', restore: true))
-    .pipe($.imagemin(
-      progressive: true
-      svgoPlugins: [removeViewBox: false]
-      use: [$.pngquant()]
-    ))
+    .pipe($.imagemin([
+      $.imagemin.gifsicle(interlaced: true)
+      $.mozjpeg(progressive: true)
+      $.pngquant(floyd: 0, speed: 1)
+      $.imagemin.optipng(optimizationLevel: 5)
+      $.imagemin.svgo(plugins: [removeViewBox: false])
+    ]))
     .pipe(imgFilter.restore)
     .pipe(gulp.dest('dist'))
 
