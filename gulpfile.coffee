@@ -89,4 +89,4 @@ gulp.task 'build:dist', ['build'], ->
 
 gulp.task 'deploy', ['build:dist'], ->
   gulp.src('dist/**', dot: true)
-    .pipe($.ghPages())
+    .pipe($.ghPages(branch: 'master'))
