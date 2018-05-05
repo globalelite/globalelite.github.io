@@ -207,6 +207,8 @@ body > main > article.splash
   canvas
     width 100%
 
+  canvas
+  video
     &[width='0']
       display none
 
@@ -223,6 +225,19 @@ body > main > article.splash
 
   h2
     font-size 2em
+    text-shadow #000 2px  0px, #000 -2px  0px,
+                #000 0px -2px, #000  0px  2px,
+                #000 2px  2px, #000 -2px  2px,
+                #000 2px -2px, #000 -2px -2px,
+                #000 1px  2px, #000 -1px  2px,
+                #000 1px -2px, #000 -1px -2px,
+                #000 2px  1px, #000 -2px  1px,
+                #000 2px -1px, #000 -2px -1px
 
     @media (min-width: breakpoint-huge)
       font-size (2em * (breakpoint-huge / breakpoint-large))
+      opacity 0
+      transition all .5s ease
+
+      &:hover
+        opacity 1

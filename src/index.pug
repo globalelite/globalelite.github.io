@@ -13,14 +13,18 @@ append meta
   meta(name='twitter:site', content='@GlobalEliteSF')
 
 append scripts
-  script(src='//cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.3/processing.min.js')
+  //- script(src='//cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js')
   script(src='/scripts.js')
 
 append main
   article.splash
-    canvas(width='0', height='0', data-processing-sources='reboot.pde')
+    //- canvas(width='0', height='0', data-processing-sources='reboot.pde')
+    video(src='ge.mp4', width='400', height='400', loop, muted, autoplay)
     h2
-      a(href='https://c.bunfree.net/c/tokyo26/2F/%E3%82%A2/20', target='_blank') May 6, 2018 TRC ア-20
+      a(href='https://c.bunfree.net/c/tokyo26/2F/%E3%82%A2/20', target='_blank')
+        | 二〇一八年五月六日
+        br
+        | 東京流通センター ア-20
 
 append main
   article
