@@ -15,7 +15,7 @@ gulp.task 'copy:files', ->
     .pipe(gulp.dest('.tmp'))
 
 gulp.task 'build:pug', ->
-  gulp.src('src/**/*.{pug,jade}')
+  gulp.src('src/**/!(_)*.{pug,jade}')
     .pipe($.plumber())
     .pipe($.pug())
     .pipe($.plumber.stop())
@@ -46,7 +46,7 @@ gulp.task 'build', [
 
 gulp.task 'watch', ['build'], ->
   gulp.watch 'src/**/*.{html,js,css,json,pde}', ['copy:files']
-  gulp.watch 'src/**/{.*,*}.{pug,jade}', ['build:pug']
+  gulp.watch 'src/**/*.{pug,jade}', ['build:pug']
   gulp.watch 'src/**/*.coffee', ['build:coffee']
   gulp.watch 'src/**/*.styl', ['build:stylus']
   return
