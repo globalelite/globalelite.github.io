@@ -1,1 +1,0 @@
-$.fn.autofit=function(){return this.each(function(){var s,t,i,n,e;if(!((n=(s=$(this)).width())<1)&&(i=parseInt(s.css("font-size"),10),e=(t=s.clone().css("display","none").insertBefore(s)).width())){for(;e<n;)i*=n/e,t.css("font-size",i+"px"),e=t.width();for(;n<=e;)i-=Math.max(1,i*(1-n/e)),t.css("font-size",i+"px"),e=t.width();t.remove(),s.css("font-size",i+"px")}})};
