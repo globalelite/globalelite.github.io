@@ -16,16 +16,17 @@ html(lang='ja', prefix='og: http://ogp.me/ns#')
       script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
 
   body
-    header
-      block header
-        h1
-          img(src='/emblem.svg', alt='', width='56', height='50')
-          img(src='/logo.svg', alt='グローバルエリート', width='146', height='23')
+    block body
+      header
+        block header
+          h1
+            img(src='/emblem.svg', alt='', width='56', height='50')
+            img(src='/logo.svg', alt='グローバルエリート', width='146', height='23')
 
-    block contents
-      main
-        block main
+      block contents
+        main
+          block main
 
-    footer
-      block footer
-        p &copy; 2016 グローバルエリート
+      footer
+        block footer
+          p &copy; 2016 グローバルエリート
