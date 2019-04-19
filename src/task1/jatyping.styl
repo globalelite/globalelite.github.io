@@ -1,0 +1,22 @@
+.jatyping-input
+  &.jatyping-typing
+    border-bottom 1px solid
+
+    &.jatyping-convert
+      border-bottom 2px solid
+      background-color cyan
+
+.jatyping-caret
+  opacity 1
+  animation jatyping-caret-blink 0.7s infinite
+
+  &::before
+    content '|'
+
+@keyframes jatyping-caret-blink
+  for i in 0..2
+    {50% * i}
+      if i % 2 == 1
+        opacity 0
+      else
+        opacity 1

@@ -1,0 +1,46 @@
+.jatyping-input
+  color white
+  border-bottom 2px solid transparent
+
+  &.jatyping-typing
+    border-color grey
+
+    &.jatyping-convert
+      background-color rgba(87,154,205,0.75)
+
+
+.bg-era-names
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  overflow hidden
+  z-index 10
+  user-select none
+
+  .era-name
+    opacity 0.8
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    white-space nowrap
+
+  .era-name-fadeout
+    opacity 0
+    animation fadeout 4s ease-in-out
+
+@keyframes fadeout
+  0%
+    filter blur(0)
+    transform translate(-50%, -50%)
+    opacity 0.8
+  25%
+    filter blur(0)
+    transform translate(-50%, -50%)
+    opacity 0.8
+  100%
+    filter blur(20px)
+    transform translate(-50%, -50%) scale(10)
+    opacity 0
