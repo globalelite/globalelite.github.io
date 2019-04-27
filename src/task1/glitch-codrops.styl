@@ -7,9 +7,6 @@ gap-horizontal = 10px
 gap-vertical = 5px
 duration = 4s
 delay = 2s
-image-url = 'https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg'
-image-width = 100%
-image-height = 100%
 blend-mode-1 = none
 blend-mode-2 = none
 blend-mode-3 = none
@@ -22,20 +19,16 @@ blend-color-4 = #fb909a
 blend-color-5 = #1c1cc9
 
 .glitch-codrops-images
-  position absolute
-  top 0
-  left 0
-  right 0
-  bottom 0
-  opacity 0.5
+  position relative
+  display inline-block
+  vertical-align bottom
 
 .glitch-codrops-image
   position absolute
   width 100%
   height 100%
   transform translate3d(0, 0, 0)
-  background blend-color-1 url(image-url) repeat 50% 50%
-  background-size 150px
+  background blend-color-1 none no-repeat 50% 50%
   background-blend-mode blend-mode-1
 
   &:nth-child(n+2)

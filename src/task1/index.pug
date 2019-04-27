@@ -1,23 +1,86 @@
 extends ../_layout
 
 append meta
-  title TASK1 | グローバルエリート
+  - var title = 'TASK 令和時代 | グローバルエリート'
+  - var description = '時代を切り拓くグローバルエリートのテーマ短編集「TASK 令和時代」のお知らせ'
+  title= title
+  meta(name='description', content=description)
+  meta(property='og:title', content=title)
+  meta(property='og:type', content='website')
+  meta(property='og:url', content=pageRootURL)
+  meta(property='og:image', content=`${pageRootURL}og-image.png`)
+  meta(property='og:site_name', content=title)
+  meta(property='og:description', content=description)
+  meta(name='twitter:card', content='summary_large_image')
+  meta(name='twitter:site', content='@GlobalEliteSF')
 
 append styles
   link(rel='stylesheet' href='glitch-codrops.css')
-  link(rel='stylesheet' href='jatyping.css')
-  link(rel='stylesheet' href='styles.css')
 
 append scripts
-  script(src='jatyping.js')
-  script(src='era_name_list.js')
   script(src='scripts.js')
 
-block body
-  .glitch-codrops-images
-    .glitch-codrops-image
-    .glitch-codrops-image
-    .glitch-codrops-image
-    .glitch-codrops-image
-    .glitch-codrops-image
-  .bg-era-names
+append main
+  article.splash
+    img(src='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg', width=176, alt='')
+
+append main
+  article
+    h2 特報
+    p
+      | グローバルエリートはテーマ短編集TASKの刊行を決定した。
+      | この増刊号は何が違うのか？
+    ol
+      li テーマがある。テーマに沿っていればSFである必要はない。
+      li 字数制限がある。これは簡単なTASKだ。分厚い必要はない。
+      li 外部執筆者を募集する。我々は成長したい人間を拒まない。
+    p
+      | 我々と共に新時代を描こう！
+
+    h3 活動概要
+    p 参加者には後日、詳細なものが共有される。
+
+    h4 レギュレーション
+    ol
+      li 「令和時代」というテーマに即した作品であること。
+      li 一万五千字以内であること。一万字程度が目安であるが、より短い詩なども受け付ける。
+      li 日本語縦書き組版で問題が発生しない（修正に応じれる）こと。
+    p
+      | なお、これらのレギュレーションを満たさないと判断された作品は掲載しない。
+      | 例えば、「令和」を五千回繰り返したテキストファイルは拒絶される。
+
+    h4 スケジュール
+    ol
+      li 七月頃：参加希望の〆切
+      li 八月中旬：初稿〆切、感想提出
+      li 九月中旬：最終稿〆切
+      li 十月二十日：文学フリマ福岡にて頒布
+
+    h4 参加者負担・利益
+    ol
+      li 原稿と他作品の初稿感想の提出
+      li 金銭負担なし
+      li 収録作品著者へは献本
+    p なお、作品は遅れて発行される電子版にも収録される。
+
+    h4 参加方法
+    p
+      | グローバルエリートの<a href="https://twitter.com/GlobalEliteSF" target="_blank">Twitterアカウント</a>、
+      | もしくは他のメンバーにコンタクトをとって欲しい。現時点では明確な期限はない。
+      | 活動開始は早くて五月七日、文学フリマ東京以後を予定している。
+    p
+      | なお、連絡の都合、電子メールおよびTwitterアカウントがあることが参加条件となる。
+
+    h3 Q&amp;A
+    ul
+      li
+        | Q. なぜ、文学フリマ福岡で頒布するのですか？
+        br
+        | A. 福岡が選ばれたのは、スケジュール上の都合とテーマである令和ゆかりの地であるから。
+        | 東京ではないのは、グローバルエリートが行える地方貢献であるから。
+        | よって、基本的に通販は受け付けない。我々と共に地方経済を回そう！！！
+      li
+        | Q. 気になります！　でも、福岡は行けません＞＜
+        br
+        | A. 書けば手に入る。
+    p 以後、質問があれば追記する。
