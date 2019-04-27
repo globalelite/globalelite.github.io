@@ -35,7 +35,8 @@ width-scrollbar = 2rem
 breakpoint-large = ((width-content-large + width-gap * 4) * ratio-text-root-large / ratio-text-root + width-scrollbar)
 breakpoint-huge = ((width-content-huge + width-gap * 4) * ratio-text-root-huge / ratio-text-root + width-scrollbar)
 
-// Styles -----------------------------------------------------------------------
+
+// Basecoat ---------------------------------------------------------------------
 
 html
   font-family serif
@@ -44,7 +45,7 @@ html
   font-feature-settings 'palt'
 
 body
-  background-color #000
+  background-color #111
   color #999
 
 a
@@ -57,12 +58,6 @@ a
 img
   vertical-align bottom
 
-h1 > img
-  vertical-align middle
-
-  + img
-    margin-left 12px
-
 h2
 dt
   color #eee
@@ -73,10 +68,14 @@ ul
 
   &.inline > li
     display inline-block
-    margin-left .5em
+    margin-left .25em
+    margin-right .25em
 
     &:first-child
       margin-left 0
+
+    &:last-child
+      margin-right 0
 
 dd
   margin-left 0
@@ -87,17 +86,10 @@ dd
     margin-bottom 0
 
 figure
-  margin-left 0
-  margin-right 0
+  margin 0
 
-figure
-body > footer
-  text-align center
-  overflow hidden
 
-body > footer
-  color #666
-  font-size 85%
+// Container --------------------------------------------------------------------
 
 container-selectors = "body > header, body > main > article, body > main > form, body > aside, body > footer"
 
@@ -130,7 +122,6 @@ container-selectors = "body > header, body > main > article, body > main > form,
     max-width width-content-huge
 
   main figure
-    margin-top 0
     float left
 
     + dl
@@ -141,6 +132,8 @@ body > aside
   &::after
     display block
     content ''
+    margin-top 2em
+    margin-bottom 2em
     margin-left auto
     margin-right auto
     border-style none
@@ -150,36 +143,65 @@ body > aside
     background-image linear-gradient(#666, #666 33.33%, transparent 33.33%, transparent 100%)
     background-size 100% 3px
 
+figure
+body > footer
+  text-align center
+  overflow hidden
+
+
+// Header -----------------------------------------------------------------------
+
+h1 > img
+  vertical-align middle
+
+  + img
+    margin-left 12px
+
+
+// Aside ------------------------------------------------------------------------
+
+body > aside
+  ul.inline
+    font-size 80%
+
+    i.fa
+      font-size 80%
+
+// Footer -----------------------------------------------------------------------
+
+body > footer
+  color #666
+  font-size 85%
+
+
+// Button -----------------------------------------------------------------------
+
 .btn
   btn-border-color = rgba(0,0,0,0.2)
-  btn-font-rate = 0.8
-  btn-icon-rate = 1.6
   btn-size = 2em
   btn-padding-size = .5em
+  btn-font-rate = ratio / (btn-size / 1em)
+  btn-icon-rate = 1 / btn-font-rate
 
   font-size 100% * btn-font-rate
   display inline-block
   height btn-size
   line-height btn-size
   white-space nowrap
-  vertical-align middle
   cursor pointer
   user-select none
   padding 0 btn-padding-size
   border 1px solid btn-border-color
   border-radius 4px
 
-  &:hover
-    text-decoration none
-
   > .fa:first-child
     btn-icon-size = btn-size / btn-icon-rate
     btn-icon-padding-size = btn-padding-size / btn-icon-rate
+
     font-size 100% * btn-icon-rate
     display inline-block
     width btn-icon-size
     height 100%
-    vertical-align bottom
     line-height btn-icon-size
     text-align center
     margin-left -1 * btn-icon-padding-size
@@ -194,50 +216,49 @@ body > aside
   color #fff
   background-color #1b95e0
 
+
+// Splash -----------------------------------------------------------------------
+
 body > main > article.splash
   max-width initial
   padding-left 0
   padding-right 0
 
 .splash
-  position relative
   text-align center
-  overflow hidden
+  background-color #000
+  padding-top .5em
+  padding-bottom .5em
 
-  canvas
-    width 100%
+  html.js &
+    display none
 
-  canvas
-  video
-    &[width='0']
-      display none
+  &:after
+    content none
 
-    &:not([width='0'])
-      margin-bottom margin
+  p
+    margin .5em 0
+    font-size 200%
 
-      + h2
-        position absolute
-        top 50%
-        left margin
-        right margin
-        margin (margin / -2) 0 0
-        transform translate(0, -50%)
+.jatyping-input
+  &.jatyping-typing
+    border-bottom 1px solid
 
-  h2
-    font-size 2em
-    text-shadow #000 2px  0px, #000 -2px  0px,
-                #000 0px -2px, #000  0px  2px,
-                #000 2px  2px, #000 -2px  2px,
-                #000 2px -2px, #000 -2px -2px,
-                #000 1px  2px, #000 -1px  2px,
-                #000 1px -2px, #000 -1px -2px,
-                #000 2px  1px, #000 -2px  1px,
-                #000 2px -1px, #000 -2px -1px
+    &.jatyping-convert
+      border-bottom 2px solid
+      background-color rgba(87, 154, 205, 0.5)
 
-    @media (min-width: breakpoint-huge)
-      font-size (2em * (breakpoint-huge / breakpoint-large))
-      opacity 0
-      transition all .5s ease
+.jatyping-caret
+  opacity 1
+  animation jatyping-caret-blink 0.7s infinite
 
-      &:hover
+  &::before
+    content '|'
+
+@keyframes jatyping-caret-blink
+  for i in 0..2
+    {50% * i}
+      if i % 2 == 1
+        opacity 0
+      else
         opacity 1

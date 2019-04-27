@@ -1,32 +1,33 @@
 extends _layout
 
 append meta
-  title 同人サークル グローバルエリート
-  meta(name='description', content='グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。')
-  meta(property='og:title', content='同人サークル グローバルエリート')
+  - var title = '同人サークル グローバルエリート'
+  - var description = 'グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。'
+  title= title
+  meta(name='description', content=description)
+  meta(property='og:title', content=title)
   meta(property='og:type', content='website')
   meta(property='og:url', content=pageRootURL)
   meta(property='og:image', content=`${pageRootURL}og-image.png`)
-  meta(property='og:site_name', content='同人サークル グローバルエリート')
-  meta(property='og:description', content='グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。')
+  meta(property='og:site_name', content=title)
+  meta(property='og:description', content=description)
   meta(name='twitter:card', content='summary_large_image')
   meta(name='twitter:site', content='@GlobalEliteSF')
 
 append scripts
-  //- script(src='//cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js')
+  script(src='/jatyping.js')
   script(src='/scripts.js')
 
 append main
   article.splash
-    //- canvas(width='0', height='0', data-processing-sources='reboot.pde')
-    video(src='ge.mp4', width='400', height='400', loop, muted, autoplay)
-    h2
+    p 我々は二つの成長をする
+    p
       a(href='https://c.bunfree.net/c/tokyo28/!/%E3%82%B9/46', target='_blank')
-        | 二〇一九年五月六日
-        br
-        | 第二十九回文学フリマ東京
-        br
-        | ス-46
+        | 文フリ東京 ス-46
+    p
+      a(href='/task1/')
+        | TASK 令和時代
+    p “おれたちは休まない”
 
 append main
   article
@@ -44,32 +45,25 @@ append main
       dd
         ul
           li
-            | S'
-            //- a(href='', target='_blank') S'
+            a(href='https://twitter.com/GlobalEliteSF/status/1119819380705988611', target='_blank') 𝓢’
             | （髙座創）
           li
-            | 新生物地理区サニーコート・マツダ
-            //- a(href='', target='_blank') 新生物地理区サニーコート・マツダ
+            a(href='https://twitter.com/GlobalEliteSF/status/1120161862522249218', target='_blank') 新生物地理区サニーコート・マツダ
             | （架旗透）
           li
-            | Upside Down
-            //- a(href='', target='_blank') Upside Down
+            a(href='https://twitter.com/GlobalEliteSF/status/1120525047381266434', target='_blank') Upside Down
             | （零Ｆ）
           li
-            | 断末魔コンテスト
-            //- a(href='', target='_blank') 断末魔コンテスト
+            a(href='https://twitter.com/GlobalEliteSF/status/1120887031251423232', target='_blank') 断末魔コンテスト
             | （元壱路）
           li
-            | 帰還者に向けたよりよい生活の手引き ――『第三章:コミニュケーション』
-            //- a(href='', target='_blank') 帰還者に向けたよりよい生活の手引き ――『第三章:コミニュケーション』
+            a(href='https://twitter.com/GlobalEliteSF/status/1121250720362024960', target='_blank') 帰還者に向けたよりよい生活の手引き ――『第三章:コミニュケーション』
             | （維嶋津）
           li
-            | AIライツウォッチ
-            //- a(href='', target='_blank') AIライツウォッチ
+            a(href='https://twitter.com/GlobalEliteSF/status/1121610316175962112', target='_blank') AIライツウォッチ
             | （東京ニトロ）
           li
-            | ミヤの眠り、私の朝
-            //- a(href='', target='_blank') ミヤの眠り、私の朝
+            a(href='https://twitter.com/GlobalEliteSF/status/1121977466505981952', target='_blank') ミヤの眠り、私の朝
             | （杏野丞）
       dt 刊行日
       dd 二〇一九年五月六日
@@ -253,38 +247,59 @@ append contents
       dt 髙座創
       dd
         | 最高サークル責任者。
-        a(href='https://kakuyomu.jp/users/TsukuruTakakura', target='_blank') カクヨム
-        | 。
+        ul.inline
+          li
+            a(href='https://kakuyomu.jp/users/TsukuruTakakura', target='_blank')
+              | カクヨム
+              i.fa.fa-external-link
       dt 架旗透
       dd
         | 表紙デザイン担当。
-        a(href='https://kakuyomu.jp/users/Hodler', target='_blank') カクヨム
-        | 。
+        ul.inline
+          li
+            a(href='https://kakuyomu.jp/users/Hodler', target='_blank')
+              | カクヨム
+              i.fa.fa-external-link
       dt 維嶋津
       dd
         | 紹介文・リクルート担当。
-        a(href='https://kakuyomu.jp/users/Shin_Ishima', target='_blank') カクヨム
-        | 。
+        ul.inline
+          li
+            a(href='https://kakuyomu.jp/users/Shin_Ishima', target='_blank')
+              | カクヨム
+              i.fa.fa-external-link
       dt 東京ニトロ
       dd
         | POP広告担当。
-        a(href='https://kakuyomu.jp/users/tokyonitro', target='_blank') カクヨム
-        | 。
+        ul.inline
+          li
+            a(href='https://kakuyomu.jp/users/tokyonitro', target='_blank')
+              | カクヨム
+              i.fa.fa-external-link
       dt 杏野丞
       dd
         | 執筆メンバー。
-        a(href='http://efuden.web.fc2.com/', target='_blank') ウェブサイト
-        | 。
+        ul.inline
+          li
+            a(href='http://efuden.web.fc2.com/', target='_blank')
+              | ウェブサイト
+              i.fa.fa-external-link
       dt 零Ｆ
       dd
         | 執筆メンバー。
-        a(href='http://summertimeinblue.net/', target='_blank') ウェブサイト
-        | 。
+        ul.inline
+          li
+            a(href='http://summertimeinblue.net/', target='_blank')
+              | ウェブサイト
+              i.fa.fa-external-link
       dt 元壱路
       dd
         | 執筆メンバー。
-        a(href='https://doradoracomeback.blogspot.com/', target='_blank') ウェブサイト
-        | 。
+        ul.inline
+          li
+            a(href='https://doradoracomeback.blogspot.com/', target='_blank')
+              | ウェブサイト
+              i.fa.fa-external-link
 
 prepend footer
   p
