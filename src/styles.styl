@@ -66,11 +66,23 @@ h3
 h4
   color #ccc
 
-ul
-  list-style-type none
-  padding-left 0
+dd
+  margin-left 0
+  margin-bottom .5em
 
-  &.inline > li
+  ul
+  ol
+    margin-top 0
+    margin-bottom 0
+
+dd
+figure
+  ul
+  ol
+    list-style-type none
+    padding-left 0
+
+  ul > li
     display inline-block
     margin-left .25em
     margin-right .25em
@@ -80,14 +92,6 @@ ul
 
     &:last-child
       margin-right 0
-
-dd
-  margin-left 0
-  margin-bottom .5em
-
-  ul
-    margin-top 0
-    margin-bottom 0
 
 figure
   margin 0
@@ -111,12 +115,14 @@ container-selectors = "body > header, body > main > article, body > main > form,
   {container-selectors}
     max-width width-content-large
 
-  dt
-    width width-label
-    float left
+  main > article > figure + dl
+  aside > dl
+    dt
+      width width-label
+      float left
 
-  dd
-    margin-left width-label
+    dd
+      margin-left width-label
 
 @media (min-width: breakpoint-huge)
   html
@@ -125,7 +131,7 @@ container-selectors = "body > header, body > main > article, body > main > form,
   {container-selectors}
     max-width width-content-huge
 
-  main figure
+  main > article > figure
     float left
 
     + dl
@@ -165,11 +171,12 @@ h1 > img
 // Aside ------------------------------------------------------------------------
 
 body > aside
-  ul.inline
+  dl ul
     font-size 80%
 
     i.fa
       font-size 80%
+
 
 // Footer -----------------------------------------------------------------------
 
@@ -219,6 +226,28 @@ body > footer
 .btn-twitter
   color #fff
   background-color #1b95e0
+
+// Q & A ------------------------------------------------------------------------
+
+dl.qa
+  padding-left 1.5em
+
+  dt
+  dd
+    position relative
+    &::before
+      position absolute
+      left -1.5em
+
+  dt
+    color inherit
+
+    &::before
+      content 'Q.'
+
+  dd
+    &::before
+      content 'A.'
 
 
 // Splash -----------------------------------------------------------------------
