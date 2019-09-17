@@ -14,20 +14,19 @@ append meta
   meta(name='twitter:card', content='summary_large_image')
   meta(name='twitter:site', content='@GlobalEliteSF')
 
+prepend styles
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=M+PLUS+1p')
+
 append scripts
-  script(src='/jatyping.js')
+  //- script(src='/jatyping.js')
   script(src='/scripts.js')
 
 append main
   article.splash
-    p 我々は二つの成長をする
-    p
-      a(href='https://c.bunfree.net/c/tokyo28/!/%E3%82%B9/46', target='_blank')
-        | 文フリ東京 ス-46
-    p
-      a(href='/task1/')
-        | TASK 令和時代
-    p “おれたちは休まない”
+    p.huge
+      | 10月20日、
+      a(href='https://c.bunfree.net/c/fukuoka05/16126', target='_blank') 福岡
+      | に来い！
 
 append main
   article

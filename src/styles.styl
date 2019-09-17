@@ -263,6 +263,7 @@ body > main > article.splash
 .splash
   text-align center
   background-color #000
+  margin-bottom 2em
   padding-top .5em
   padding-bottom .5em
 
@@ -274,27 +275,45 @@ body > main > article.splash
 
   p
     margin .5em 0
-    font-size 200%
+    font-size 300%
+    font-family 'M PLUS 1p'
+    font-weight 900
 
-.jatyping-input
-  &.jatyping-typing
-    border-bottom 1px solid
+@media (min-width: breakpoint-huge)
+  .splash p
+    font-size 400%
 
-    &.jatyping-convert
-      border-bottom 2px solid
-      background-color rgba(87, 154, 205, 0.5)
-
-.jatyping-caret
+html.js .splash p
   opacity 1
-  animation jatyping-caret-blink 0.7s infinite
+  filter blur(0)
+  transform scale(1)
+  transition 2.5s ease-in
+  transition-property opacity filter transform
 
-  &::before
-    content '|'
+  &.huge
+    opacity 0
+    filter blur(20px)
+    transform scale(12)
 
-@keyframes jatyping-caret-blink
-  for i in 0..2
-    {50% * i}
-      if i % 2 == 1
-        opacity 0
-      else
-        opacity 1
+// .jatyping-input
+//   &.jatyping-typing
+//     border-bottom 1px solid
+
+//     &.jatyping-convert
+//       border-bottom 2px solid
+//       background-color rgba(87, 154, 205, 0.5)
+
+// .jatyping-caret
+//   opacity 1
+//   animation jatyping-caret-blink 0.7s infinite
+
+//   &::before
+//     content '|'
+
+// @keyframes jatyping-caret-blink
+//   for i in 0..2
+//     {50% * i}
+//       if i % 2 == 1
+//         opacity 0
+//       else
+//         opacity 1
