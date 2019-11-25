@@ -14,10 +14,10 @@ $ ($) ->
 
 $ ($) ->
   $('.splash').css('display', 'block')
-  setTimeout ->
-    $('.splash p').removeClass('huge')
-    return
-  , 500
+  # setTimeout ->
+  #   $('.splash p').removeClass('huge')
+  #   return
+  # , 500
 
   # child = (node) ->
   #   $node = $(node)
