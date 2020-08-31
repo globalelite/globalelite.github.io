@@ -19,86 +19,89 @@ $ ($) ->
   #   return
   # , 500
 
-  # child = (node) ->
-  #   $node = $(node)
-  #   $a = $node.find('a')
-  #   if $a.length then $a else $node
-  # $p = $('.splash p')
-  # $p.each ->
-  #   child(this).html('&nbsp;')
-  #   return
-  # $('.splash').css('display', 'block')
+  child = (node) ->
+    $node = $(node)
+    $a = $node.find('a')
+    if $a.length then $a else $node
+  $p = $('.splash p')
+  $p.each ->
+    child(this).html('&nbsp;')
+    return
+  $('.splash').css('display', 'block')
 
-  # inputs = [
-  #   [
-  #     [
-  #       ['われわれは']
-  #       [
-  #         ['我々は']
-  #       ]
-  #     ]
-  #     [
-  #       ['ふたつのせいちょうをする']
-  #       [
-  #         ['二つの']
-  #         ['成長を']
-  #         ['刷る', 'する']
-  #       ]
-  #     ]
-  #   ]
-  #   [
-  #     [
-  #       ['ぶんがくふりま', 'ぶんふり']
-  #       [
-  #         ['文フリ']
-  #       ]
-  #     ]
-  #     [
-  #       ['とうきょう']
-  #       [
-  #         ['東京']
-  #       ]
-  #     ]
-  #     [' ']
-  #     [
-  #       ['す']
-  #       [
-  #         ['ス']
-  #       ]
-  #     ]
-  #     ['-46']
-  #   ]
-  #   [
-  #     ['TASK ']
-  #     [
-  #       ['れいわじだい']
-  #       [
-  #         ['礼和', '例話', '例羽', '令和']
-  #         ['時代']
-  #       ]
-  #     ]
-  #   ]
-  #   [
-  #     [
-  #       ['”おれたちはやすまない”']
-  #       [
-  #         ['“']
-  #         ['おれたちは']
-  #         ['休まない']
-  #         ['”']
-  #       ]
-  #     ]
-  #   ]
-  # ]
-  # typing = (i) ->
-  #   if inputs[i]
-  #     child($p.eq(i)).empty().jatyping(
-  #       inputs[i]
-  #       ->
-  #         $(this).find('.jatyping-caret').css('visibility', 'hidden')
-  #         typing(i + 1)
-  #         return
-  #     )
-  #   return
-  # typing(0)
+  inputs = [
+    [
+      [
+        ['とうきょうが']
+        [
+          ['東京が']
+        ]
+      ]
+      [
+        ['ちゅうしになって']
+        [
+          ['中止に']
+          ['なって']
+        ]
+      ]
+      [
+        ['よんかげつ・・・・・・']
+        [
+          ['4ヶ月', '四ヶ月']
+          ['……']
+        ]
+      ]
+    ]
+    [
+      [
+        ['おれたちは']
+        [
+          ['俺たちは']
+        ]
+      ]
+      [
+        ['おおさかに']
+        [
+          ['大阪に']
+        ]
+      ]
+      [
+        ['やってきた']
+        [
+          ['やってきた']
+        ]
+      ]
+      [
+        ['で！']
+        [
+          ['で！']
+        ]
+      ]
+    ]
+    [
+      ['COVID-19', 'C-19']
+    ]
+    [
+      [
+        ['”おれたちはやすまない”']
+        [
+          ['“']
+          ['おれたちは']
+          ['休まない']
+          ['”']
+        ]
+      ]
+    ]
+  ]
+  typing = (i) ->
+    if inputs[i]
+      child($p.eq(i)).empty().jatyping(
+        inputs[i]
+        ->
+          $(this).find('.jatyping-caret').css('visibility', 'hidden')
+          typing(i + 1)
+          return
+      )
+    return
+  typing(0)
   return
