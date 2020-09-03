@@ -90,9 +90,9 @@ do ($) ->
     return
 
   $.when(
-    $.get(url: '/emblem.svg', dataType: 'text')
-    $.get(url: '/emblem-ge.svg', dataType: 'text')
-    $.get(url: '/logo.svg', dataType: 'text')
+    $.get(url: require('/emblem.svg'), dataType: 'text')
+    $.get(url: require('/emblem-ge.svg'), dataType: 'text')
+    $.get(url: require('/logo.svg'), dataType: 'text')
   ).then (emblemArgs, emblemGeArgs, logoArgs) ->
     $.when(
       createSvgImg(emblemArgs[0])
