@@ -3,27 +3,6 @@
  * DS102: Remove unnecessary code created because of implicit returns
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-$(($) =>
-  $('main>article').each(function () {
-    const $this = $(this);
-    const $dl = $this.find('dl');
-    if (!$dl.length) {
-      return;
-    }
-    const $h2 = $this.find('h2');
-    $dl.prepend($('<dt>').text('タイトル'), $('<dd>').text($h2.text()));
-    $h2.remove();
-    $dl
-      .find('dt')
-      .filter(function () {
-        return $(this).text() === '電子版';
-      })
-      .find('+dd>ul')
-      .clone()
-      .appendTo($this.find('figure'));
-  })
-);
-
 $(function ($) {
   $('.splash').css('display', 'block');
   // setTimeout ->

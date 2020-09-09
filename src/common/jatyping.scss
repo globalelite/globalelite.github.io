@@ -1,0 +1,31 @@
+.jatyping-input {
+  &.jatyping-typing {
+    border-bottom: 1px solid;
+
+    &.jatyping-convert {
+      border-bottom: 2px solid;
+      background-color: rgba(87, 154, 205, 0.5);
+    }
+  }
+}
+
+.jatyping-caret {
+  opacity: 1;
+  animation: jatyping-caret-blink 0.7s infinite;
+
+  &::before {
+    content: '|';
+  }
+}
+
+@keyframes jatyping-caret-blink {
+  @for $i from 0 through 2 {
+    #{50% * $i} {
+      @if $i % 2 == 1 {
+        opacity: 0;
+      } @else {
+        opacity: 1;
+      }
+    }
+  }
+}

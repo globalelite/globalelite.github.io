@@ -13,9 +13,8 @@ html(lang='ja', prefix='og: http://ogp.me/ns#')
       link(rel='shortcut icon', href='/favicon.ico')
       link(rel='apple-touch-icon', sizes='152x152', href='/apple-touch-icon.png')
     block scripts
-      script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
       script.
-        $('html').addClass('js')
+        document.documentElement.className += ' js';
 
   body
     block body

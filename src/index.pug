@@ -1,4 +1,5 @@
-extends _layout
+extends common/_layout
+include common/_jquery
 
 append meta
   - var title = '同人サークル グローバルエリート'
@@ -16,13 +17,17 @@ append meta
 
 prepend styles
   link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=M+PLUS+1p')
+  link(rel='stylesheet', href='/common/jatyping.scss')
+
+append body
+  script(src='/scripts.ts')
 
 append scripts
-  script(src='/jatyping.js')
-  script(src='/scripts.js')
+  script(src='/common/jatyping.js')
+  script(src='/splash.js')
 
-append main
-  article.splash
+prepend contents
+  .splash
     p(style='font-size:200%') 東京が中止になって四ヶ月
     p(style='font-size:200%') 俺たちは大阪にやってきたで！
     p
