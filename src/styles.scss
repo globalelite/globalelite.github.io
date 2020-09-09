@@ -213,7 +213,8 @@ body > aside {
   dl ul {
     font-size: 80%;
 
-    i.fa {
+    i.fab,
+    i.fas {
       font-size: 80%;
     }
   }
@@ -246,7 +247,7 @@ body > footer {
   border: 1px solid $btn-border-color;
   border-radius: 4px;
 
-  > .fa:first-child {
+  > .fab:first-child {
     $btn-icon-size: $btn-size / $btn-icon-rate;
     $btn-icon-padding-size: $btn-padding-size / $btn-icon-rate;
 
