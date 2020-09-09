@@ -41,6 +41,9 @@ $breakpoint-huge: (
     $width-scrollbar
 );
 
+// Footer
+$footer-padding-top: 4em;
+
 // Basecoat ---------------------------------------------------------------------
 
 html {
@@ -51,8 +54,13 @@ html {
 }
 
 body {
-  background-color: #111;
   color: #999;
+  background-color: #000;
+}
+
+:not(input):not(textarea)::selection {
+  color: #000;
+  background: #fff;
 }
 
 a {
@@ -78,9 +86,14 @@ h4 {
   color: #ccc;
 }
 
+figure {
+  margin: 0;
+  text-align: center;
+}
+
 dd {
-  margin-left: 0;
   margin-bottom: 0.5em;
+  margin-left: 0;
 
   ul,
   ol {
@@ -90,17 +103,18 @@ dd {
 }
 
 dd,
-figure {
+figure,
+nav {
   ul,
   ol {
-    list-style-type: none;
     padding-left: 0;
+    list-style-type: none;
   }
 
   ul > li {
     display: inline-block;
-    margin-left: 0.25em;
     margin-right: 0.25em;
+    margin-left: 0.25em;
 
     &:first-child {
       margin-left: 0;
@@ -112,25 +126,40 @@ figure {
   }
 }
 
-figure {
-  margin: 0;
-}
-
 em {
   font-style: normal;
   color: #fc0;
 }
 
+i.fas,
+i.fab {
+  $fa-font-scale: 0.75;
+
+  font-size: (100% * $fa-font-scale);
+  vertical-align: (1em * (((1 - $fa-font-scale) / 2) / $fa-font-scale));
+}
+
+i.fas.fa-external-link-alt {
+  margin-left: 0.5em;
+}
+
 // Container --------------------------------------------------------------------
 
-$container-selectors: 'body > header, body > main > article, body > main > form, body > aside, body > footer';
+@mixin container {
+  body > header,
+  body > main > *,
+  body > aside > *,
+  body > footer {
+    @content;
+  }
+}
 
-#{$container-selectors} {
-  margin-left: auto;
-  margin-right: auto;
+@include container {
   max-width: $width-content;
-  padding-left: $width-gap;
   padding-right: $width-gap;
+  padding-left: $width-gap;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media (min-width: $breakpoint-large) {
@@ -138,15 +167,15 @@ $container-selectors: 'body > header, body > main > article, body > main > form,
     font-size: ($ratio-text-root-large * 100%);
   }
 
-  #{$container-selectors} {
+  @include container {
     max-width: $width-content-large;
   }
 
   main > article > figure + dl,
   aside > dl {
     dt {
-      width: $width-label;
       float: left;
+      width: $width-label;
     }
 
     dd {
@@ -160,7 +189,7 @@ $container-selectors: 'body > header, body > main > article, body > main > form,
     font-size: ($ratio-text-root-huge * 100%);
   }
 
-  #{$container-selectors} {
+  @include container {
     max-width: $width-content-huge;
   }
 
@@ -175,36 +204,99 @@ $container-selectors: 'body > header, body > main > article, body > main > form,
 
 body > main > article,
 body > aside {
-  &::after {
+  overflow: hidden;
+  &::before {
     display: block;
-    content: '';
-    margin-top: 2em;
-    margin-bottom: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: none;
     width: 25%;
     max-width: 8em;
     height: 10px;
+    margin-top: 2em;
+    margin-right: auto;
+    margin-bottom: 2em;
+    margin-left: auto;
+    content: '';
     background-image: linear-gradient(#666, #666 33.33%, transparent 33.33%, transparent 100%);
     background-size: 100% 3px;
+    border-style: none;
   }
 }
 
-figure,
-body > footer {
-  text-align: center;
-  overflow: hidden;
+body > main > article:first-child::before {
+  content: none;
 }
 
 // Header -----------------------------------------------------------------------
 
-h1 > img {
-  vertical-align: middle;
+body > header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow: hidden;
+  mix-blend-mode: exclusion;
 
-  + img {
-    margin-left: 12px;
+  h1 {
+    float: left;
+    margin: 0 18px 0 0;
+    font-size: 100%;
+    white-space: nowrap;
+
+    img {
+      vertical-align: middle;
+
+      + img {
+        margin-left: 5px;
+      }
+    }
   }
+
+  nav {
+    float: left;
+
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-top: 5px;
+      font-size: 80%;
+    }
+
+    a {
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        position: absolute;
+        bottom: 0.2em;
+        left: 50%;
+        display: block;
+        width: 0;
+        height: 1px;
+        content: '';
+        background-color: #ccc;
+        transition: 0.5s all;
+        transform: translateX(-50%);
+      }
+
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+body > main {
+  padding-top: 60px;
 }
 
 // Aside ------------------------------------------------------------------------
@@ -212,19 +304,25 @@ h1 > img {
 body > aside {
   dl ul {
     font-size: 80%;
-
-    i.fab,
-    i.fas {
-      font-size: 80%;
-    }
   }
 }
 
 // Footer -----------------------------------------------------------------------
 
 body > footer {
+  padding-top: $footer-padding-top;
+  padding-bottom: 2em;
+  overflow: hidden;
+  font-size: 75%;
   color: #666;
-  font-size: 85%;
+
+  nav {
+    float: left;
+  }
+
+  p {
+    float: right;
+  }
 }
 
 // Button -----------------------------------------------------------------------
@@ -236,14 +334,14 @@ body > footer {
   $btn-font-rate: $ratio / ($btn-size / 1em);
   $btn-icon-rate: 1 / $btn-font-rate;
 
-  font-size: 100% * $btn-font-rate;
   display: inline-block;
   height: $btn-size;
+  padding: 0 $btn-padding-size;
+  font-size: 100% * $btn-font-rate;
   line-height: $btn-size;
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
-  padding: 0 $btn-padding-size;
   border: 1px solid $btn-border-color;
   border-radius: 4px;
 
@@ -251,14 +349,15 @@ body > footer {
     $btn-icon-size: $btn-size / $btn-icon-rate;
     $btn-icon-padding-size: $btn-padding-size / $btn-icon-rate;
 
-    font-size: 100% * $btn-icon-rate;
     display: inline-block;
     width: $btn-icon-size;
     height: 100%;
+    margin-right: $btn-icon-padding-size;
+    margin-left: -1 * $btn-icon-padding-size;
+    font-size: 100% * $btn-icon-rate;
     line-height: $btn-icon-size;
     text-align: center;
-    margin-left: -1 * $btn-icon-padding-size;
-    margin-right: $btn-icon-padding-size;
+    vertical-align: 0;
     border-right: 1px solid $btn-border-color;
   }
 }
@@ -266,11 +365,6 @@ body > footer {
 .btn-amazon {
   color: #fff;
   background-color: #eb8c11;
-}
-
-.btn-twitter {
-  color: #fff;
-  background-color: #1b95e0;
 }
 
 // Q & A ------------------------------------------------------------------------
@@ -306,44 +400,53 @@ dl.qa {
 // Splash -----------------------------------------------------------------------
 
 .splash {
-  text-align: center;
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
   background-color: #000;
-  margin-bottom: 2em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
 
   html.js & {
     display: none;
   }
 
-  &:after {
-    content: none;
-  }
+  & ~ main,
+  & ~ aside {
+    background-color: #111;
 
+    & ~ footer::before {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: $footer-padding-top;
+      margin-top: $footer-padding-top * -1;
+      content: '';
+      background-image: linear-gradient(#111, transparent 100%);
+    }
+  }
+}
+
+.splash-contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.splash-contents-text {
   p {
     margin: 0.5em 0;
-    font-size: 300%;
-    font-family: 'M PLUS 1p';
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 150%;
     font-weight: 900;
+    text-align: center;
   }
-}
 
-@media (min-width: $breakpoint-huge) {
-  .splash p {
-    font-size: 400%;
-  }
-}
-
-html.js .splash p {
-  opacity: 1;
-  filter: blur(0);
-  transform: scale(1);
-  transition: 2.5s ease-in;
-  transition-property: opacity filter transform;
-
-  &.huge {
-    opacity: 0;
-    filter: blur(20px);
-    transform: scale(12);
+  big {
+    font-size: 200%;
   }
 }

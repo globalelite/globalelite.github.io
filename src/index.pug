@@ -16,7 +16,7 @@ append meta
   meta(name='twitter:site', content='@GlobalEliteSF')
 
 prepend styles
-  link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=M+PLUS+1p')
+  link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap')
   link(rel='stylesheet', href='/common/jatyping.scss')
 
 append body
@@ -26,13 +26,44 @@ append scripts
   script(src='/common/jatyping.js')
   script(src='/splash.js')
 
+append header
+  nav
+    ul
+      li
+        a(href="#main") ワークス
+      li
+        a(href="#tools") ツールズ
+      li
+        a(href="#members") メンバー
+      //- li
+      //-   a(href="#" target="_blank")
+      //-     | ショップ
+      //-     i.fas.fa-external-link-alt(aria-hidden='true')
+
 prepend contents
   .splash
-    p(style='font-size:200%') 東京が中止になって四ヶ月
-    p(style='font-size:200%') 俺たちは大阪にやってきたで！
-    p
-      a(href='https://c.bunfree.net/c/osaka08/!/C/19', target='_blank') C-19
-    p “おれたちは休まない”
+    .splash-contents
+      .splash-contents-text
+        p(data-jatyping-inputs=`[
+          [["とうきょうが"], [["東京が"]]],
+          [["ちゅうしになって"], [["中止に"], ["なって"]]],
+          [["よんかげつ・・・・・・"], [["4ヶ月", "四ヶ月"], ["……"]]]
+        ]`) 東京が中止になって四ヶ月
+        p(data-jatyping-inputs=`[
+          [["おれたちは"], [["俺たちは"]]],
+          [["おおさかに"], [["大阪に"]]],
+          [["やってきた"], [["やってきた"]]],
+          [["で！"], [["で！"]]]
+        ]`) 俺たちは大阪にやってきたで！
+        p
+          big
+            a(href='https://c.bunfree.net/c/osaka08/!/C/19', target='_blank', data-jatyping-inputs=`[
+              ["COVID-19", "C-19"]
+            ]`) C-19
+        p
+          big(data-jatyping-inputs=`[
+            [["”おれたちはやすまない”"], [["“"], ["おれたちは"], ["休まない"], ["”"]]]
+          ]`) “おれたちは休まない”
 
 append main
   article
@@ -430,7 +461,7 @@ append contents
               i.fas.fa-external-link-alt(aria-hidden='true')
 
 prepend footer
-  p
-    a.btn.btn-twitter(href='https://twitter.com/GlobalEliteSF', target='_blank')
-      i.fab.fa-twitter(aria-hidden='true')
-      | @GlobalEliteSF
+  nav
+    ul
+      li
+        a(href='https://twitter.com/GlobalEliteSF', target='_blank') Twitter

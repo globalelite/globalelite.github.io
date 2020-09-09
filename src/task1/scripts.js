@@ -1,4 +1,4 @@
-$(function ($) {
+$(($) => {
   const loaded = function () {
     const $this = $(this);
     const $div = $('<div>')
@@ -8,7 +8,7 @@ $(function ($) {
         height: `${this.height}px`,
       })
       .insertBefore(this);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i += 1) {
       $('<div>')
         .addClass('glitch-codrops-image')
         .css({
