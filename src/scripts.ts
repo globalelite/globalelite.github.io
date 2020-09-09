@@ -12,6 +12,7 @@ document.querySelectorAll('main>article').forEach((article) => {
   const dd = document.createElement('dd');
   while (h2.firstChild) dd.appendChild(h2.firstChild);
   dl.insertBefore(dd, dt.nextSibling);
+  (h2.parentNode as HTMLElement).id = h2.id;
   h2.parentNode.removeChild(h2);
 
   const figure = article.querySelector('figure');
