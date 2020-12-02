@@ -1,5 +1,5 @@
 $(($) => {
-  $('.splash-contents-text [data-jatyping]').html('&nbsp;');
+  // $('.splash-contents-text [data-jatyping]').html('&nbsp;');
   $('.splash').css('display', 'block');
-  $('.splash-contents-text').jatyping();
+  // $('.splash-contents-text').jatyping();
 });
