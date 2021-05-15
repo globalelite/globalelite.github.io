@@ -1,1 +1,0 @@
-$(function(i){return i("main>article").each(function(){var t,n,e;(t=(e=i(this)).find("dl")).length&&(n=e.find("h2"),t.prepend(i("<dt>").text("タイトル"),i("<dd>").text(n.text())),n.remove(),t.find("dt").filter(function(){return"電子版"===i(this).text()}).find("+dd>ul").clone().appendTo(e.find("figure")))})}),$(function(t){t(".splash").css("display","block")});
