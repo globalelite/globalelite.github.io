@@ -45,8 +45,21 @@ prepend contents
     .splash-contents
       .splash-contents-text
         p
-          big
-            a(href='https://c.bunfree.net/c/tokyo32/!/%E3%82%AA/13') 5/16 オ-13
+          big(data-jatyping=`[
+            ["WORK"],
+            [["ふぉーわん"],[["フォーワン"]]]
+          ]`) WORKフォーワン
+        p
+          a(href='https://www.amazon.co.jp/dp/B0977J58BP?tag=globalelitesf-22', target='_blank')
+            big(data-jatyping=`[
+              [["ついに"]],
+              [["でんしで"],[["電子"],["で"]]],
+              [["かえる"],[["買える"]]]
+            ]`) ついに電子で買える
+        p
+          big(data-jatyping=`[
+            [["”おれたちはやすまない”"], [["“"], ["おれたちは"], ["休まない"], ["”"]]]
+          ]`) “おれたちは休まない”
 
 append main
   article
@@ -80,19 +93,21 @@ append main
             | （髙座創）
       dt 刊行日
       dd 二〇二一年五月十六日
-      //- dt 電子版
-      //- dd
-      //-   ul
-      //-     li
-      //-       a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B07TVXLV7D?tag=globalelitesf-22', target='_blank')
-      //-         i.fab.fa-amazon(aria-hidden='true')
-      //-         | Kindle Store
+      dt 電子版
+      dd
+        ul
+          li
+            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B0977J58BP?tag=globalelitesf-22', target='_blank')
+              i.fab.fa-amazon(aria-hidden='true')
+              | Kindle Store
       dt 書籍版
       dd
         ol
           li
             a(href='https://bunfree.net/event/tokyo32/', target='_blank') 第三十二回文学フリマ東京
-            | にて初版極少数部を特別価格にて頒布（
+            | および
+            a(href='https://globalelite.booth.pm/items/2981005', target='_blank') Booth
+            | （オンライン通販）にて初版極少数部を特別価格にて頒布（
             a(href='https://c.bunfree.net/p/tokyo32/20878', target='_blank') 文学フリマWebカタログ
             | ）
   article
