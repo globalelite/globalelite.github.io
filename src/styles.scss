@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // Variable ---------------------------------------------------------------------
 
 // Basic
@@ -6,8 +8,8 @@ $ratio: 1.618;
 // Text size
 $ratio-text: 1;
 $ratio-text-huge: ($ratio-text * $ratio);
-$ratio-text-large: (($ratio-text + $ratio-text-huge) / 2);
-$ratio-text-small: ($ratio-text-large / $ratio);
+$ratio-text-large: math.div($ratio-text + $ratio-text-huge, 2);
+$ratio-text-small: math.div($ratio-text-large, $ratio);
 
 // Line height
 $line-height: $ratio;
@@ -18,12 +20,12 @@ $margin: $ratio * 1rem;
 
 // Core
 $ratio-text-root: $ratio-text;
-$ratio-text-root-large: (($ratio-text-large - $ratio-text) / 4 + $ratio-text);
-$ratio-text-root-huge: (($ratio-text-large - $ratio-text) / 2 + $ratio-text);
+$ratio-text-root-large: (math.div($ratio-text-large - $ratio-text, 4) + $ratio-text);
+$ratio-text-root-huge: (math.div($ratio-text-large - $ratio-text, 2) + $ratio-text);
 $line-height-root: $line-height;
 
 // Content
-$width-gap: 1rem / $ratio;
+$width-gap: math.div(1rem, $ratio);
 $width-label: 6rem;
 $width-image: 10rem;
 $width-content: 32rem;
@@ -33,11 +35,11 @@ $width-scrollbar: 2rem;
 
 // Breakpoint
 $breakpoint-large: (
-  ($width-content-large + $width-gap * 4) * $ratio-text-root-large / $ratio-text-root +
+  math.div(($width-content-large + $width-gap * 4) * $ratio-text-root-large, $ratio-text-root) +
     $width-scrollbar
 );
 $breakpoint-huge: (
-  ($width-content-huge + $width-gap * 4) * $ratio-text-root-huge / $ratio-text-root +
+  math.div(($width-content-huge + $width-gap * 4) * $ratio-text-root-huge, $ratio-text-root) +
     $width-scrollbar
 );
 
@@ -136,7 +138,7 @@ i.fab {
   $fa-font-scale: 0.75;
 
   font-size: (100% * $fa-font-scale);
-  vertical-align: (1em * (((1 - $fa-font-scale) / 2) / $fa-font-scale));
+  vertical-align: (1em * math.div(math.div(1 - $fa-font-scale, 2), $fa-font-scale));
 }
 
 i.fas.fa-external-link-alt {
@@ -331,8 +333,8 @@ body > footer {
   $btn-border-color: rgba(0, 0, 0, 0.2);
   $btn-size: 2em;
   $btn-padding-size: 0.5em;
-  $btn-font-rate: $ratio / ($btn-size / 1em);
-  $btn-icon-rate: 1 / $btn-font-rate;
+  $btn-font-rate: math.div($ratio, math.div($btn-size, 1em));
+  $btn-icon-rate: math.div(1, $btn-font-rate);
 
   display: inline-block;
   height: $btn-size;
@@ -346,8 +348,8 @@ body > footer {
   border-radius: 4px;
 
   > .fab:first-child {
-    $btn-icon-size: $btn-size / $btn-icon-rate;
-    $btn-icon-padding-size: $btn-padding-size / $btn-icon-rate;
+    $btn-icon-size: math.div($btn-size, $btn-icon-rate);
+    $btn-icon-padding-size: math.div($btn-padding-size, $btn-icon-rate);
 
     display: inline-block;
     width: $btn-icon-size;
