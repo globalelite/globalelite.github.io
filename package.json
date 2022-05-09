@@ -4,7 +4,7 @@
   "scripts": {
     "serve": "parcel serve 'src/**/!(_)*.{html,pug}'",
     "build": "rm -rf dist && parcel build --no-source-maps 'src/**/!(_)*.{html,pug}' && cp src/{.nojekyll,CNAME,og-image.png,favicon.ico} dist",
-    "deploy": "npm run build && gh-pages -b master -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "format": "prettier --write ."
   },
   "devDependencies": {
