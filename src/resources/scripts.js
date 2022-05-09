@@ -144,9 +144,9 @@
   };
 
   $.when(
-    $.get({ url: require('/emblem.svg'), dataType: 'text' }),
-    $.get({ url: require('/emblem-ge.svg'), dataType: 'text' }),
-    $.get({ url: require('/logo.svg'), dataType: 'text' })
+    $.get({ url: require('../emblem.svg'), dataType: 'text' }),
+    $.get({ url: require('../emblem-ge.svg'), dataType: 'text' }),
+    $.get({ url: require('../logo.svg'), dataType: 'text' })
   ).then(([emblemText], [emblemGeText], [logoText]) => {
     $.when(
       fetchSvgImage(emblemText),

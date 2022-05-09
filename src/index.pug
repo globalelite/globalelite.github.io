@@ -8,7 +8,6 @@ append meta
   meta(name='description', content=description)
   meta(property='og:title', content=title)
   meta(property='og:type', content='website')
-  meta(property='og:url', content=pageRootURL)
   meta(property='og:image', content=`${pageRootURL}og-image.png`)
   meta(property='og:site_name', content=title)
   meta(property='og:description', content=description)
@@ -17,14 +16,14 @@ append meta
 
 prepend styles
   link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap')
-  link(rel='stylesheet', href='/common/jatyping.scss')
+  link(rel='stylesheet', href='common/jatyping.scss')
 
 append body
-  script(src='/scripts.ts')
+  script(type='module', src='scripts.ts')
 
 append scripts
-  script(src='/common/jatyping.js')
-  script(src='/splash.js')
+  script(type='module', src='common/jatyping.js')
+  script(type='module', src='splash.js')
 
 append header
   nav

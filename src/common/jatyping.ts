@@ -403,8 +403,9 @@ export const remove = (
   const delayBySpeed = 1000 / (removeSpeed || speed || 40);
   let targetNode = elem.lastChild;
   if (caretTagName) {
-    targetNode = elem.appendChild(findOrCreateCaret(elem, caretTagName, [caretClassName]))
-      .previousSibling;
+    targetNode = elem.appendChild(
+      findOrCreateCaret(elem, caretTagName, [caretClassName])
+    ).previousSibling;
   }
 
   new RecursiveFunction<[Node | null]>({

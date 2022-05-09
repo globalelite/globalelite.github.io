@@ -1,19 +1,27 @@
 {
-  "name": "globalelite",
   "private": true,
+  "name": "globalelite",
   "scripts": {
-    "serve": "parcel serve 'src/**/!(_)*.{html,pug}'",
-    "build": "rm -rf dist && parcel build --no-source-maps 'src/**/!(_)*.{html,pug}' && cp src/{.nojekyll,CNAME,og-image.png,favicon.ico} dist",
-    "deploy": "npm run build && gh-pages -d dist",
-    "format": "prettier --write ."
+    "prebuild": "rimraf dist",
+    "build": "parcel build --no-source-maps 'src/**/!(_)*.{html,pug}'",
+    "postbuild": "cp src/og-image.png src/favicon.ico dist",
+    "dev": "parcel serve 'src/**/!(_)*.{html,pug}'",
+    "fix": "run-s -c fix:*",
+    "fix:prettier": "prettier --write .",
+    "fix:prettier-package-json": "prettier-package-json --write",
+    "lint": "run-s -c lint:*",
+    "lint:actionlint": "node-actionlint",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier-package-json": "prettier-package-json -l"
   },
   "devDependencies": {
-    "autoprefixer": "9.8.8",
-    "gh-pages": "3.2.3",
-    "parcel-bundler": "1.12.5",
-    "prettier": "2.6.2",
-    "pug": "3.0.2",
-    "sass": "1.50.0",
-    "typescript": "4.6.3"
+    "@parcel/transformer-pug": "^2.5.0",
+    "@parcel/transformer-sass": "^2.5.0",
+    "node-actionlint": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.5.0",
+    "prettier": "^2.6.2",
+    "prettier-package-json": "^2.6.3",
+    "rimraf": "^3.0.2"
   }
 }
