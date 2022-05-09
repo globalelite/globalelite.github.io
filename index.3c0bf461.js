@@ -1,1 +1,0 @@
-$((s=>{s(".splash-contents-text [data-jatyping]").html("&nbsp;"),s(".splash").css("display","block"),s(".splash-contents-text").jatyping()}));
