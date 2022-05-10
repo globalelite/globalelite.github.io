@@ -1,189 +1,168 @@
 (($) => {
-  const fetchSvgImage = (svgText) => {
-    const dfr = $.Deferred();
-    const img = new Image();
-    img.onload = () => {
-      dfr.resolve(img);
+  const getPathData = (svgRoot) => {
+    const $svg = $('svg', svgRoot);
+    const path = new Path2D();
+    $svg.find('path').map(function () {
+      path.addPath(new Path2D($(this).attr('d')));
+    });
+    return {
+      width: parseFloat($svg.attr('width')),
+      height: parseFloat($svg.attr('height')),
+      path,
     };
-    img.onerror = () => {
-      dfr.reject(img);
-    };
-    img.src = 'data:image/svg+xml;,' + encodeURIComponent(svgText);
-    return dfr.promise();
   };
+
+  const createSVGMatrix = () =>
+    document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGMatrix();
 
   const calcMarginRatio = (img) => 1 - img.width / img.height / 1.618;
 
-  const expandMargin = (...margins) => {
-    switch (margins.length) {
-      case 4:
-        return margins;
-      case 3:
-        return margins.concat(margins[1]);
+  const toSizeAll = (...sizes) => {
+    if (typeof sizes === 'number') return [sizes, sizes, sizes, sizes];
+    switch (sizes.length) {
+      case 1:
+        return [sizes[0], sizes[0], sizes[0], sizes[0]];
       case 2:
-        return margins.concat(margins);
-      default: {
-        const margin = margins[0] || 0;
-        return [margin, margin, margin, margin];
-      }
+        return [sizes[0], sizes[1], sizes[0], sizes[1]];
+      case 3:
+        return [sizes[0], sizes[1], sizes[2], sizes[1]];
+      default:
+        return sizes.slice(0, 4);
     }
-  };
-
-  const getCenteringPosition = (img, x, y, w, h) => {
-    const scale = Math.min(
-      w > 0 ? w / img.width : Number.MAX_VALUE,
-      h > 0 ? h / img.height : Number.MAX_VALUE
-    );
-    const imgW = img.width * scale;
-    const imgH = img.height * scale;
-    const imgX = Math.max(0, (w - imgW) / 2);
-    const imgY = Math.max(0, (h - imgH) / 2);
-    return { x: x + imgX, y: y + imgY, w: imgW, h: imgH, scale };
-  };
-
-  const getDrawingPosition = (canvas, img, ...args) => {
-    const [marginTop, marginRight, marginBottom, marginLeft] = expandMargin(...(args || []));
-    const pos = getCenteringPosition(
-      img,
-      marginLeft,
-      marginTop,
-      canvas.width - marginLeft - marginRight,
-      canvas.height - marginTop - marginBottom
-    );
-    return { ...pos, marginTop, marginRight, marginBottom, marginLeft };
-  };
-
-  const createDrawArgsFromPos = (canvas, img, pos) => {
-    if (!canvas.width) {
-      canvas.width = pos.w + pos.marginLeft + pos.marginRight;
-    }
-    return [img, pos.x, pos.y, pos.w, pos.h];
-  };
-
-  const createDrawArgs = (canvas, img, ...args) => {
-    const pos = getDrawingPosition(canvas, img, ...args);
-    return createDrawArgsFromPos(canvas, img, pos);
-  };
-
-  const drawResource = (canvas, imgs, type, fgColor, bgColor, withMargin) => {
-    const emblemImg = imgs[`${fgColor}Emblem`];
-    const emblemGeImg = imgs[`${fgColor}EmblemGe`];
-    const logoImg = imgs[`${fgColor}Logo`];
-    const baseGapSize = (canvas.height * calcMarginRatio(emblemImg)) / 2;
-    const baseMargin = withMargin ? baseGapSize : 0;
-    const argsSet = [];
-
-    switch (type) {
-      case 'emblem':
-        if (withMargin) {
-          canvas.width = canvas.height;
-        }
-        argsSet.push(createDrawArgs(canvas, emblemImg, baseMargin));
-        break;
-      case 'logo':
-        argsSet.push(createDrawArgs(canvas, logoImg, baseMargin));
-        break;
-      case 'emblem-ge': {
-        if (withMargin) {
-          canvas.width = canvas.height;
-        }
-        const margin = withMargin ? (canvas.height * calcMarginRatio(emblemGeImg)) / 4 : 0;
-        argsSet.push(createDrawArgs(canvas, emblemGeImg, margin));
-        break;
-      }
-      case 'horizontal': {
-        const emblemPos = getDrawingPosition(canvas, emblemImg, baseMargin);
-        argsSet.push(createDrawArgsFromPos(canvas, emblemImg, emblemPos));
-        canvas.width = 0;
-        const logoHeight = (emblemPos.h * 2) / 3;
-        const logoMarginX = (canvas.height - logoHeight) / 2;
-        argsSet.push(
-          createDrawArgs(
-            canvas,
-            logoImg,
-            logoMarginX,
-            baseMargin,
-            logoMarginX,
-            emblemPos.x + emblemPos.w + baseGapSize
-          )
-        );
-        break;
-      }
-      case 'vertical': {
-        const margin = baseMargin / 2;
-        const logoPos = getCenteringPosition(logoImg, margin, 0, canvas.height - margin * 2, 0);
-        canvas.width = logoPos.w + margin * 2;
-        const gapSize = (emblemImg.height * logoPos.scale - logoPos.h) / 2;
-        const emblemPos = getDrawingPosition(
-          canvas,
-          emblemImg,
-          margin,
-          0,
-          margin + gapSize + logoPos.h
-        );
-        argsSet.push(createDrawArgsFromPos(canvas, emblemImg, emblemPos));
-        argsSet.push([
-          logoImg,
-          logoPos.x,
-          emblemPos.y + emblemPos.h + gapSize,
-          logoPos.w,
-          logoPos.h,
-        ]);
-        break;
-      }
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (bgColor) {
-      ctx.fillStyle = bgColor;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-    argsSet.forEach((args) => {
-      ctx.drawImage(...(args || []));
-    });
   };
 
   $.when(
-    $.get({ url: require('../emblem.svg'), dataType: 'text' }),
-    $.get({ url: require('../emblem-ge.svg'), dataType: 'text' }),
-    $.get({ url: require('../logo.svg'), dataType: 'text' })
-  ).then(([emblemText], [emblemGeText], [logoText]) => {
-    $.when(
-      fetchSvgImage(emblemText),
-      fetchSvgImage(emblemGeText),
-      fetchSvgImage(logoText),
-      fetchSvgImage(emblemText.replace(/#fff/g, '#000')),
-      fetchSvgImage(emblemGeText.replace(/#fff/g, '#000')),
-      fetchSvgImage(logoText.replace(/#fff/g, '#000'))
-    ).then((whiteEmblem, whiteEmblemGe, whiteLogo, blackEmblem, blackEmblemGe, blackLogo) => {
-      $(() => {
-        const imgNodes = {
-          whiteEmblem,
-          whiteEmblemGe,
-          whiteLogo,
-          blackEmblem,
-          blackEmblemGe,
-          blackLogo,
-        };
-        const canvasNode = $('<canvas>').appendTo('#resource')[0];
-        const formNode = $('#config').submit(() => false)[0];
-        const generate = () => {
-          canvasNode.width = 0;
-          canvasNode.height = parseInt(formNode.size.value, 10);
-          const [fgColor, bgColor] = Array.from(formNode.color.value.split('-on-'));
-          drawResource(
-            canvasNode,
-            imgNodes,
-            formNode.type.value,
-            fgColor,
-            bgColor,
-            formNode.margin.checked
+    $.get({ url: require('../emblem.svg'), dataType: 'xml' }),
+    $.get({ url: require('../emblem-ge.svg'), dataType: 'xml' }),
+    $.get({ url: require('../logo.svg'), dataType: 'xml' })
+  ).then(([emblemNode], [emblemGeNode], [logoNode]) => {
+    const emblemData = getPathData(emblemNode);
+    const emblemGeData = getPathData(emblemGeNode);
+    const logoData = getPathData(logoNode);
+    const getData = (type) => {
+      switch (type) {
+        case 'emblem':
+          return emblemData;
+
+        case 'emblem-ge':
+          return emblemGeData;
+
+        case 'logo':
+          return logoData;
+
+        case 'horizontal': {
+          const gapSize = (emblemData.height * calcMarginRatio(emblemData)) / 2;
+          const logoHeight = (emblemData.height * 2) / 3;
+          const logoScale = logoHeight / logoData.height;
+          const path = new Path2D();
+          path.addPath(emblemData.path);
+          path.addPath(
+            logoData.path,
+            createSVGMatrix()
+              .translate(emblemData.width + gapSize, (emblemData.height - logoHeight) / 2)
+              .scale(logoScale)
           );
-          return false;
-        };
-        $('input').change(generate);
-        generate();
-      });
+          return {
+            width: emblemData.width + gapSize + logoData.width * logoScale,
+            height: emblemData.height,
+            path,
+          };
+        }
+
+        case 'vertical': {
+          const logoScale = emblemData.height / logoData.width;
+          const logoHeight = logoData.height * logoScale;
+          const gapSize = ((emblemData.height - logoData.height) * logoScale) / 2;
+          const emblemHeight = emblemData.height - gapSize - logoHeight;
+          const emblemScale = emblemHeight / emblemData.height;
+          const path = new Path2D();
+          path.addPath(
+            emblemData.path,
+            createSVGMatrix()
+              .translate((emblemData.height - emblemData.width * emblemScale) / 2, 0)
+              .scale(emblemScale)
+          );
+          path.addPath(
+            logoData.path,
+            createSVGMatrix()
+              .translate(0, emblemData.height - logoHeight)
+              .scale(logoScale)
+          );
+          return {
+            width: emblemData.height,
+            height: emblemData.height,
+            path,
+          };
+        }
+      }
+    };
+
+    const getAutoPadding = (type, canvasHeight) => {
+      const baseSize = (canvasHeight * calcMarginRatio(emblemData)) / 2;
+      switch (type) {
+        case 'emblem':
+          return toSizeAll(
+            (canvasHeight -
+              ((canvasHeight - baseSize * 2) / emblemData.width) * emblemData.height) /
+              2,
+            baseSize
+          );
+        case 'emblem-ge': {
+          const size = (canvasHeight * calcMarginRatio(emblemGeData)) / 4;
+          return toSizeAll(
+            (canvasHeight - ((canvasHeight - size) / emblemGeData.width) * emblemGeData.height) / 2,
+            size
+          );
+        }
+        case 'vertical':
+          return toSizeAll(baseSize / 2);
+        default:
+          return toSizeAll(baseSize);
+      }
+    };
+
+    $(() => {
+      const canvasNode = $('<canvas>').appendTo('#resource')[0];
+      const formNode = $('#config').submit(() => false)[0];
+      const generate = () => {
+        const [fgColor, bgColor] = formNode.color.value.split('-on-');
+        const data = getData(formNode.type.value);
+        const canvasHeight = parseInt(formNode.size.value, 10);
+        const padding = formNode.margin.checked
+          ? getAutoPadding(formNode.type.value, canvasHeight)
+          : toSizeAll(0);
+        const canvasWidth = Math.round(
+          ((canvasHeight - padding[0] - padding[2]) / data.height) * data.width +
+            (padding[1] + padding[3])
+        );
+        canvasNode.width = canvasWidth;
+        canvasNode.height = canvasHeight;
+        const scale = Math.min(
+          (canvasWidth - padding[1] - padding[3]) / data.width,
+          (canvasHeight - padding[0] - padding[2]) / data.height
+        );
+        const ctx = canvasNode.getContext('2d');
+        if (bgColor) {
+          ctx.fillStyle = bgColor;
+          ctx.fillRect(0, 0, canvasNode.width, canvasNode.height);
+        }
+        ctx.fillStyle = fgColor;
+        const mtx = createSVGMatrix();
+        const path = new Path2D();
+        path.addPath(
+          data.path,
+          mtx
+            .translate(
+              padding[3] + (canvasNode.width - padding[1] - padding[3] - data.width * scale) / 2,
+              padding[0] + (canvasNode.height - padding[0] - padding[2] - data.height * scale) / 2
+            )
+            .scale(scale)
+        );
+        ctx.fill(path);
+        return false;
+      };
+      $('input').change(generate);
+      generate();
     });
   });
 })($);
