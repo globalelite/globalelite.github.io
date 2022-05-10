@@ -16,15 +16,20 @@ block append meta
   meta(name='twitter:site', content='@GlobalEliteSF')
 
 block append styles
-  link(rel='stylesheet', href='glitch-codrops.scss')
+  link(rel='stylesheet', href='../common/glitch.scss')
 
 block append scripts
+  script(type='module', src='../common/jquery.glitch.js')
   script(type='module', src='scripts.js')
 
 block prepend contents
   .splash
     .splash-contents
-      img(src='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg', style='height: 80%', alt='')
+      img(
+        src='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg',
+        style='height: 80% !important',
+        alt=''
+      )
 
 block append main
   article

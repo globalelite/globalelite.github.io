@@ -9,13 +9,13 @@ $delay: 2s;
 $blend-modes: normal, normal, normal, overlay, overlay;
 $blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
 
-.glitch-codrops-images {
+.glitch-img {
   position: relative;
   display: inline-block;
   vertical-align: bottom;
 }
 
-.glitch-codrops-image {
+.glitch-img-layer {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -25,22 +25,22 @@ $blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
 
   &:nth-child(n + 2) {
     opacity: 0;
-    animation: glitch-codrops-1 $duration linear $delay infinite;
+    animation: glitch-img-layer-1 $duration linear $delay infinite;
   }
 
   @each $i in 2, 3, 4, 5 {
     &:nth-child(#{$i}) {
       background-color: list.nth($blend-colors, $i);
       background-blend-mode: list.nth($blend-modes, $i);
-      animation-name: unquote('glitch-codrops-' + $i);
+      animation-name: unquote('glitch-img-layer-' + $i);
     }
   }
 }
 
-@keyframes glitch-codrops-1 {
+@keyframes glitch-img-layer-1 {
 }
 
-@keyframes glitch-codrops-2 {
+@keyframes glitch-img-layer-2 {
   @for $i from 0 through 10 {
     #{2% * $i} {
       @if $i == 0 {
@@ -64,7 +64,7 @@ $blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
   }
 }
 
-@keyframes glitch-codrops-3 {
+@keyframes glitch-img-layer-3 {
   0% {
     opacity: 1;
     transform: translate3d($gap-horizontal * -1, 0, 0);
@@ -88,7 +88,7 @@ $blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
   }
 }
 
-@keyframes glitch-codrops-4 {
+@keyframes glitch-img-layer-4 {
   0% {
     opacity: 1;
     transform: translate3d(0, $gap-vertical * -1, 0) scale3d(-1, -1, 1);
@@ -115,7 +115,7 @@ $blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
   }
 }
 
-@keyframes glitch-codrops-5 {
+@keyframes glitch-img-layer-5 {
   0%,
   5% {
     opacity: 0.2;
