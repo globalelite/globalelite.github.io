@@ -1,19 +1,13 @@
 // cf. https://github.com/codrops/CSSGlitchEffect
 
+@use 'sass:list';
+
 $gap-horizontal: 10px;
 $gap-vertical: 5px;
 $duration: 4s;
 $delay: 2s;
-$blend-mode-1: none;
-$blend-mode-2: none;
-$blend-mode-3: none;
-$blend-mode-4: overlay;
-$blend-mode-5: overlay;
-$blend-color-1: transparent;
-$blend-color-2: transparent;
-$blend-color-3: transparent;
-$blend-color-4: #fb909a;
-$blend-color-5: #1c1cc9;
+$blend-modes: normal, normal, normal, overlay, overlay;
+$blend-colors: transparent, transparent, transparent, #fb909a, #1c1cc9;
 
 .glitch-codrops-images {
   position: relative;
@@ -26,21 +20,24 @@ $blend-color-5: #1c1cc9;
   width: 100%;
   height: 100%;
   transform: translate3d(0, 0, 0);
-  background: $blend-color-1 none no-repeat 50% 50%;
-  background-blend-mode: $blend-mode-1;
+  background: list.nth($blend-colors, 1) none no-repeat 50% 50%;
+  background-blend-mode: list.nth($blend-modes, 1);
 
   &:nth-child(n + 2) {
     opacity: 0;
-    animation: $duration linear $delay infinite;
+    animation: glitch-codrops-1 $duration linear $delay infinite;
   }
 
   @each $i in 2, 3, 4, 5 {
     &:nth-child(#{$i}) {
-      background-color: lookup('blend-color-' + $i);
-      background-blend-mode: lookup('blend-mode-' + $i);
+      background-color: list.nth($blend-colors, $i);
+      background-blend-mode: list.nth($blend-modes, $i);
       animation-name: unquote('glitch-codrops-' + $i);
     }
   }
+}
+
+@keyframes glitch-codrops-1 {
 }
 
 @keyframes glitch-codrops-2 {
