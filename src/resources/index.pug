@@ -44,11 +44,23 @@ block append main
         label
           input(type='radio', name='color', value='black-on-white', checked)
           | 黒＋背景白
-      dt 大きさ
+      dt サイズ
       dd
-        input(type='number', name='size', value='81', min='1')
-        label
-          input(type='checkbox', name='margin', value='yes', checked)
-          | 余白
+        dl
+          dt 幅
+          dd
+            input(type='number', name='width', value='', min='1', disabled)
+            label
+              input(type='checkbox', name='autoWidth', value='yes', checked)
+              | 自動
+          dt 高さ
+          dd
+            input(type='number', name='height', value='81', min='1')
+          dt 余白
+          dd
+            input(type='number', name='padding', value='', min='0', disabled)
+            label
+              input(type='checkbox', name='autoPadding', value='yes', checked)
+              | 自動
 
   #resource

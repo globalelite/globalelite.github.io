@@ -1,22 +1,33 @@
-#config > dl {
-  > dt {
+#config dl {
+  & > dt {
     float: left;
     width: 5em;
     overflow: hidden;
-    clear: left;
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  > dd {
+  & > dd {
     margin-left: 6em;
+  }
 
-    input[type='radio'],
-    input[type='checkbox'] {
-      margin-left: 0.5em;
-      margin-right: 0.5em;
+  & dl {
+    margin: 0;
+
+    & > dt {
+      width: 2.5em;
     }
+
+    & > dd {
+      margin-left: 3.5em;
+    }
+  }
+
+  & input[type='radio'],
+  & input[type='checkbox'] {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 }
 

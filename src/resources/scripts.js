@@ -127,14 +127,34 @@
       const generate = () => {
         const [fgColor, bgColor] = formNode.color.value.split('-on-');
         const data = getData(formNode.type.value);
-        const canvasHeight = parseInt(formNode.size.value, 10);
-        const padding = formNode.margin.checked
+        const canvasHeight = parseInt(formNode.height.value, 10);
+        const padding = formNode.autoPadding.checked
           ? getAutoPadding(formNode.type.value, canvasHeight)
+          : formNode.padding.value
+          ? toSizeAll(...formNode.padding.value.split(/\s+/).map(parseFloat))
           : toSizeAll(0);
-        const canvasWidth = Math.round(
-          ((canvasHeight - padding[0] - padding[2]) / data.height) * data.width +
-            (padding[1] + padding[3])
-        );
+        const canvasWidth =
+          (formNode.autoWidth.checked ? 0 : parseInt(formNode.width.value, 10)) ||
+          Math.round(
+            ((canvasHeight - padding[0] - padding[2]) / data.height) * data.width +
+              (padding[1] + padding[3])
+          );
+
+        if (formNode.autoWidth.checked) {
+          formNode.width.value = '';
+          formNode.width.disabled = true;
+        } else if (formNode.width.disabled) {
+          formNode.width.value = canvasWidth;
+          formNode.width.disabled = false;
+        }
+        if (formNode.autoPadding.checked) {
+          formNode.padding.value = '';
+          formNode.padding.disabled = true;
+        } else if (formNode.padding.disabled) {
+          formNode.padding.value = 0;
+          formNode.padding.disabled = false;
+        }
+
         canvasNode.width = canvasWidth;
         canvasNode.height = canvasHeight;
         const scale = Math.min(
