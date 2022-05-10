@@ -1,16 +1,16 @@
 extends ../common/_layout
 include ../common/_jquery
 
-append meta
+block append meta
   title リソース | グローバルエリート
 
-append styles
+block append styles
   link(rel='stylesheet', href='styles.scss')
 
-append scripts
+block append scripts
   script(type='module', src='scripts.js')
 
-append main
+block append main
   form#config
     dl
       dt 種類

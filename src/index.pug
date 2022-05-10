@@ -1,9 +1,9 @@
 extends common/_layout
 include common/_jquery
 
-append meta
-  - var title = '同人サークル グローバルエリート'
-  - var description = 'グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。'
+block append meta
+  - var title = '同人サークル グローバルエリート';
+  - var description = 'グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。';
   title= title
   meta(name='description', content=description)
   meta(property='og:title', content=title)
@@ -14,32 +14,35 @@ append meta
   meta(name='twitter:card', content='summary_large_image')
   meta(name='twitter:site', content='@GlobalEliteSF')
 
-prepend styles
-  link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap')
+block prepend styles
+  link(
+    rel='stylesheet',
+    href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap'
+  )
   link(rel='stylesheet', href='common/jatyping.scss')
 
-append body
+block append body
   script(type='module', src='scripts.ts')
 
-append scripts
+block append scripts
   script(type='module', src='common/jatyping.js')
   script(type='module', src='splash.js')
 
-append header
+block append header
   nav
     ul
       li
-        a(href="#main") ワークス
+        a(href='#main') ワークス
       li
-        a(href="#tools") ツールズ
+        a(href='#tools') ツールズ
       li
-        a(href="#members") メンバー
+        a(href='#members') メンバー
       li
-        a(href="https://globalelite.booth.pm/" target="_blank")
+        a(href='https://globalelite.booth.pm/', target='_blank')
           | ショップ
           i.fas.fa-external-link-alt(aria-hidden='true')
 
-prepend contents
+block prepend contents
   .splash
     .splash-contents
       .splash-contents-text
@@ -47,12 +50,16 @@ prepend contents
           a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
             big 5/29 カ-29
 
-append main
+block append main
   article
     h2#ge8 WORK 鯨の仔
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/794fcc7cccef2a9b91b09390d8194cca7e6d73bf_large.png?1652005386', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/794fcc7cccef2a9b91b09390d8194cca7e6d73bf_large.png?1652005386',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -92,7 +99,11 @@ append main
     h2#ge7 WORK フォーワン
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/526df68f84844e0390d235910c0c3b8fb001754f_large.png?1620868888', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/526df68f84844e0390d235910c0c3b8fb001754f_large.png?1620868888',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -123,7 +134,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B0977J58BP?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B0977J58BP?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -141,7 +155,11 @@ append main
     h2#ge6 WORK マンモス大合成
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/e2c9cc651b91613b82e5dd0b92e9554eb9aefece_large.png?1621768480', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/e2c9cc651b91613b82e5dd0b92e9554eb9aefece_large.png?1621768480',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -172,7 +190,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B095N4TWSR?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B095N4TWSR?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -186,12 +207,16 @@ append main
             a(href='https://c.bunfree.net/p/osaka08/19096', target='_blank') 文学フリマWebカタログ
             | ）
 
-append main
+block append main
   article
     h2#ge5 TASK 令和時代
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/31edd3bdde0545c49b5e48bec22691350695388d_large.png?1568732249', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/31edd3bdde0545c49b5e48bec22691350695388d_large.png?1568732249',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -203,50 +228,53 @@ append main
         ol
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1175607109481746433', target='_blank') バカンス
-            |（杏野丞）
+            | （杏野丞）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1175978546797236226', target='_blank') 四月三十日／メロトロン
-            |（硬質アルマイト）
+            | （硬質アルマイト）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1176331599341731840', target='_blank') アンテグラル
-            |（黒杜玖乃）
+            | （黒杜玖乃）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1176700638689931264', target='_blank') 令和元年のベースボール
-            |（江藤竜）
+            | （江藤竜）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1177065983485169666', target='_blank') ベーシストは変態なのか
-            |（零F）
+            | （零F）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1177421905353039879', target='_blank') エスカレーター
-            |（元壱路）
+            | （元壱路）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1177800892948439041', target='_blank') 平成くんと令和ちゃん
-            |（藤沢泰大）
+            | （藤沢泰大）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1178168447101853698', target='_blank') リュウの入会
-            |（架旗透）
+            | （架旗透）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1178507895291297792', target='_blank') 選択肢、その枝の先
-            |（董火ru-ko）
+            | （董火ru-ko）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1178871056121004033', target='_blank') GRAZER
-            |（ところてん）
+            | （ところてん）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1179233246657355776', target='_blank') 鉄槌は孤独の調べ
-            |（電咲響子）
+            | （電咲響子）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1179649775718686720', target='_blank') ゲーム
-            |（維嶋津）
+            | （維嶋津）
           li
             a(href='https://twitter.com/GlobalEliteSF/status/1179988317372215296', target='_blank') ようこそ、次の世界へ
-            |（髙𫝶創）
+            | （髙𫝶創）
       dt 刊行日
       dd 二〇一九年十月二十日
       dt 電子版
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B08C78NYKV?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B08C78NYKV?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -260,12 +288,16 @@ append main
             a(href='https://c.bunfree.net/c/fukuoka05/16126', target='_blank') 文学フリマWebカタログ
             | ）
 
-append main
+block append main
   article
     h2#ge4 WORK Upside Down
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/882c8bc40dcf0e29c40d40d3ac21b8aa4dc39f58_large.png?1554652728', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/882c8bc40dcf0e29c40d40d3ac21b8aa4dc39f58_large.png?1554652728',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -303,7 +335,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B07TVXLV7D?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B07TVXLV7D?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -315,12 +350,16 @@ append main
             a(href='https://c.bunfree.net/p/tokyo28/14164', target='_blank') 文学フリマWebカタログ
             | ）
 
-append main
+block append main
   article
     h2#ge3 WORK 堕ち人賛歌
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/65d862cb5d4263249b0720a5c866fb955217d0ea_large.png?1529766501', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/65d862cb5d4263249b0720a5c866fb955217d0ea_large.png?1529766501',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -351,7 +390,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B07DK3VT8Z?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B07DK3VT8Z?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -363,12 +405,16 @@ append main
             a(href='https://c.bunfree.net/p/tokyo26/10627', target='_blank') 文学フリマWebカタログ
             | ）
 
-append main
+block append main
   article
     h2#ge2 WORK ピクニック計画へようこそ
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/85e1019ec6e3a3768250e1e311215607e6824d1f_large.jpg?1491535749', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/85e1019ec6e3a3768250e1e311215607e6824d1f_large.jpg?1491535749',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -399,7 +445,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B072M1QK45?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B072M1QK45?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -411,12 +460,16 @@ append main
             a(href='https://c.bunfree.net/p/tokyo24/7500', target='_blank') 文学フリマWebカタログ
             | ）
 
-append main
+block append main
   article
     h2#ge1 WORK セリエント
 
     figure
-      img(src='https://assets-c.bunfree.net/paperclip/products/pictures/9ac90399d75a102ef7fc3522047e0a12a90f7872_large.jpg?1460133686', width=176, alt='')
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/9ac90399d75a102ef7fc3522047e0a12a90f7872_large.jpg?1460133686',
+        width=176,
+        alt=''
+      )
 
     dl
       dt ジャンル
@@ -447,7 +500,10 @@ append main
       dd
         ul
           li
-            a.btn.btn-amazon(href='https://www.amazon.co.jp/dp/B01G9RQEN4?tag=globalelitesf-22', target='_blank')
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B01G9RQEN4?tag=globalelitesf-22',
+              target='_blank'
+            )
               i.fab.fa-amazon(aria-hidden='true')
               | Kindle Store
       dt 書籍版
@@ -459,7 +515,7 @@ append main
             a(href='https://c.bunfree.net/p/tokyo22/4792', target='_blank') 文学フリマWebカタログ
             | ）
 
-append contents
+block append contents
   aside
     h2#tools ツールズ
     ul
@@ -472,7 +528,7 @@ append contents
       //-     | 組版システム
       //-     i.fab.fa-github(aria-hidden='true')
 
-append contents
+block append contents
   aside
     h2#members メンバー
     dl
@@ -533,7 +589,7 @@ append contents
               | ウェブサイト
               i.fas.fa-external-link-alt(aria-hidden='true')
 
-prepend footer
+block prepend footer
   nav
     ul
       li
