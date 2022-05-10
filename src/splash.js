@@ -1,5 +1,5 @@
 $(($) => {
-  // $('.splash-contents-text [data-jatyping]').html('&nbsp;');
+  const $typing = $('.splash-contents-text [data-jatyping]').html('&nbsp;');
   $('.splash').css('display', 'block');
-  // $('.splash-contents-text').jatyping();
+  if ($typing.length) $('.splash-contents-text').jatyping();
 });

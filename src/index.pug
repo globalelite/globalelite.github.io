@@ -27,6 +27,13 @@ block append body
 block append scripts
   script(type='module', src='common/jatyping.js')
   script(type='module', src='splash.js')
+  script(
+    src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
+    integrity='sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==',
+    crossorigin='anonymous',
+    referrerpolicy='no-referrer'
+  )
+  script(src='sketch.js')
 
 block append header
   nav
@@ -44,11 +51,15 @@ block append header
 
 block prepend contents
   .splash
+    //- .splash-contents
+    //-   video(src='ge.mp4', loop, muted, autoplay)
     .splash-contents
-      .splash-contents-text
-        p
-          a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-            big 5/29 カ-29
+      a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
+    //- .splash-contents
+    //-   .splash-contents-text
+    //-     p
+    //-       a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
+    //-         big(data-jatyping=JSON.stringify([['5/29 '], [['か'], [['カ']]], ['-29']])) 5/29 カ-29
 
 block append main
   article
