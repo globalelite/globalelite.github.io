@@ -27,13 +27,13 @@ block append body
 block append scripts
   script(type='module', src='common/jquery.jatyping.js')
   script(type='module', src='splash.js')
-  script(
-    src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
-    integrity='sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==',
-    crossorigin='anonymous',
-    referrerpolicy='no-referrer'
-  )
-  script(src='sketch.js')
+  //- script(
+  //-   src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
+  //-   integrity='sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==',
+  //-   crossorigin='anonymous',
+  //-   referrerpolicy='no-referrer'
+  //- )
+  //- script(src='sketch.js')
 
 block append header
   nav
@@ -53,18 +53,22 @@ block prepend contents
   .splash
     //- .splash-contents
     //-   video(src='ge.mp4', loop, muted, autoplay)
-    .splash-contents
-      a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-    .splash-contents
-      .splash-contents-text
-        p
-          a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-            big 5/29 カ-29
+    //- .splash-contents
+    //-   a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
     //- .splash-contents
     //-   .splash-contents-text
     //-     p
     //-       a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-    //-         big(data-jatyping=JSON.stringify([['5/29 '], [['か'], [['カ']]], ['-29']])) 5/29 カ-29
+    //-         big 5/29 カ-29
+    .splash-contents
+      .splash-contents-text
+        p
+          big(
+            data-jatyping=JSON.stringify([
+              [['ちゅうしだ'], [['中止'], ['だ']]],
+              [['ちゅうし'], [['中止']]],
+            ])
+          ) 中止だ中止
 
 block append main
   article
@@ -86,22 +90,32 @@ block append main
       dd
         ol
           li
-            span GOOD TIME
+            a(href='https://twitter.com/GlobalEliteSF/status/1528947180228456448', target='_blank') GOOD TIME
             | （東京ニトロ）
           li
-            span マンガで分かる「植物のふしぎ」
+            a(href='https://twitter.com/GlobalEliteSF/status/1529310006708871169', target='_blank') マンガで分かる「植物のふしぎ」
             | （元壱路）
           li
-            span ユニテイル・トーナメント五周年記念特集
+            a(href='https://twitter.com/GlobalEliteSF/status/1529690651033411591', target='_blank') ユニテイル・トーナメント五周年記念特集
             | （髙𫝶創）
           li
-            span 恋は流れ星のように
+            a(href='https://twitter.com/GlobalEliteSF/status/1530065208236179457', target='_blank') 恋は流れ星のように
             | （架旗透）
           li
-            span 鯨の仔
+            a(href='https://twitter.com/GlobalEliteSF/status/1530385431413395458', target='_blank') 鯨の仔
             | （維嶋津）
       dt 刊行日
       dd 二〇二二年五月二十九日
+      dt 電子版
+      dd
+        ul
+          li
+            a.btn.btn-amazon(
+              href='https://www.amazon.co.jp/dp/B0BFFKLDSF?tag=globalelitesf-22',
+              target='_blank'
+            )
+              i.fab.fa-amazon(aria-hidden='true')
+              | Kindle Store
       dt 書籍版
       dd
         ol
