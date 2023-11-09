@@ -1,0 +1,3 @@
+document.querySelectorAll("main>article").forEach(e=>{let t=e.querySelector("dl"),r=e.querySelector("h2");if(!t||!r)return;// 作品タイトルの移動
+let l=document.createElement("dt");l.appendChild(document.createTextNode("タイトル")),t.insertBefore(l,t.firstChild);let d=document.createElement("dd");for(;r.firstChild;)d.appendChild(r.firstChild);t.insertBefore(d,l.nextSibling),r.parentNode.id=r.id,r.parentNode.removeChild(r);// サムネイル下への電子版リンクコピー
+let i=e.querySelector("figure");i&&[...t.querySelectorAll("dt")].filter(e=>"電子版"===e.textContent&&"DD"===l.nextSibling.tagName).forEach(e=>{e.nextSibling.querySelectorAll("ul").forEach(e=>{i.appendChild(e.cloneNode(!0))})})});
