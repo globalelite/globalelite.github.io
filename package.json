@@ -8,15 +8,16 @@
     "dev": "parcel serve 'src/**/!(_)*.{html,pug}'",
     "lint": "run-s -c lint:*",
     "lint:actionlint": "node-actionlint",
-    "lint:prettier": "prettier --check .",
+    "lint:prettier": "prettier --check . '**/*.pug'",
     "lint:prettier-package-json": "prettier-package-json -l",
     "lint-fix": "run-s -c lint-fix:*",
-    "lint-fix:prettier": "prettier --write .",
+    "lint-fix:prettier": "prettier --write . '**/*.pug'",
     "lint-fix:prettier-package-json": "prettier-package-json --write"
   },
   "devDependencies": {
     "@parcel/transformer-pug": "^2.10.2",
     "@parcel/transformer-sass": "^2.10.2",
+    "@prettier/plugin-pug": "^3.0.0",
     "node-actionlint": "^1.2.2",
     "npm-run-all": "^4.1.5",
     "parcel": "^2.10.2",
