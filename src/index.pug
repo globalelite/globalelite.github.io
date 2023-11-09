@@ -63,12 +63,14 @@ block prepend contents
     .splash-contents
       .splash-contents-text
         p
-          big(
-            data-jatyping=JSON.stringify([
-              [['ちゅうしだ'], [['中止'], ['だ']]],
-              [['ちゅうし'], [['中止']]],
-            ])
-          ) 中止だ中止
+          a(href='/task2/')
+            big(
+              data-jatyping=JSON.stringify([
+                [['らいしゅん'], [['来春']]],
+                [['あらたなたすくが'], [['新たな'], ['タスクが']]],
+                [['はじまる！！！'], [['始まる'], ['！！！']]],
+              ])
+            ) 来春新たなタスクが始まる！！！
 
 block append main
   article

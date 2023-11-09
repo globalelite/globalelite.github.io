@@ -1,0 +1,95 @@
+extends ../common/_layout
+include ../common/_jquery
+
+block append meta
+  - var title = 'TASK 創作講座 | グローバルエリート';
+  - var description = '時代を切り拓くグローバルエリートのテーマ短編集「TASK 創作講座」のお知らせ';
+  title= title
+  meta(name='description', content=description)
+  meta(property='og:title', content=title)
+  meta(property='og:type', content='website')
+  meta(property='og:url', content=`${pageRootURL}task2/`)
+  //- meta(property='og:image', content='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg')
+  meta(property='og:site_name', content=title)
+  meta(property='og:description', content=description)
+  meta(name='twitter:card', content='summary_large_image')
+  meta(name='twitter:site', content='@GlobalEliteSF')
+
+block append styles
+  link(rel='stylesheet', href='../common/glitch.scss')
+
+block append scripts
+  script(type='module', src='../common/jquery.glitch.js')
+  script(type='module', src='scripts.js')
+
+block prepend contents
+  .splash
+    .splash-contents
+      //- img(
+      //-   src='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg',
+      //-   style='height: 80% !important',
+      //-   alt=''
+      //- )
+      p 
+        big TASK2 創作講座
+
+block append main
+  article
+    h2 特報
+    p
+      em NEW
+      = ' '
+      a(href='/#ge5') 刊行決定！
+    p
+      | グローバルエリートはテーマ短編集TASKの刊行を決定した。
+      | この増刊号は何が違うのか？
+    ol
+      li テーマがある。テーマに沿っていればSFである必要はない。
+      li 字数制限がある。これは簡単なTASKだ。分厚い必要はない。
+      li 外部執筆者を募集する。我々は成長したい人間を拒まない。
+    p
+      | 我々と共に創作を描こう！
+
+    h3 活動概要
+    p 参加者には後日、詳細なものが共有される。
+
+    h4 レギュレーション
+    ol
+      li 「創作講座」というテーマに即した作品であること。
+      li 一万五千字以内であること。一万字程度が目安であるが、より短い詩なども受け付ける。
+      li 日本語縦書き組版で問題が発生しない（修正に応じれる）こと。
+    p
+      | なお、これらのレギュレーションを満たさないと判断された作品は掲載しない。
+      | 例えば、「創作」を五千回繰り返したテキストファイルは拒絶される。
+
+    h4 スケジュール
+    ol
+      li 年内：参加希望の〆切
+      li 二月末：初稿〆切、のちに感想会
+      li 三月末：最終稿〆切
+      li 五月十九日：文学フリマ東京にて頒布
+
+    h4 参加者負担・利益
+    ol
+      li 原稿と他作品の初稿感想の提出
+      li 金銭負担なし
+      li 収録作品著者へは献本
+    p なお、作品は遅れて発行される電子版にも収録される。
+
+    h4 参加方法
+    p
+      | グローバルエリートの<a href="https://twitter.com/GlobalEliteSF" target="_blank">𝕏アカウント</a>、
+      | もしくは執筆メンバーにコンタクトをとって欲しい。現時点では明確な期限はない。
+      | 活動開始は早くて十一月十一日、文学フリマ東京以後を予定している。
+    p
+      | なお、連絡の都合、電子メールおよび𝕏アカウントがあることが参加条件となる。
+
+    h3 Q&amp;A
+    dl.qa
+      dt テーマの「創作講座」というのは界隈でよく知られている講座のことですか？
+      dd あくまでテーマが「創作講座」である。それ以上でもそれ以下でもない？
+      dt なぜ、TASKをやるのですか？
+      dd 我々は成長するからだ。
+      dt なぜ、今年は何もやらなかったのですか？
+      dd 無効な質問です。
+    p 以後、質問があれば追記する。
