@@ -1,19 +1,12 @@
 extends ../common/_layout
-include ../common/_jquery
 
-block append meta
-  - var title = 'TASK 令和時代 | グローバルエリート';
-  - var description = '時代を切り拓くグローバルエリートのテーマ短編集「TASK 令和時代」のお知らせ';
-  title= title
-  meta(name='description', content=description)
-  meta(property='og:title', content=title)
-  meta(property='og:type', content='website')
-  meta(property='og:url', content=`${pageRootURL}task1/`)
+block prepend meta
+  - var pageURL = '/task1/';
+  - var pageTitle = 'TASK 令和時代';
+  - var pageDescription = '時代を切り拓くグローバルエリートのテーマ短編集「TASK 令和時代」のお知らせ';
+
+block ogp-image
   meta(property='og:image', content='https://pbs.twimg.com/media/D4F1rQWVUAAX4XQ.jpg')
-  meta(property='og:site_name', content=title)
-  meta(property='og:description', content=description)
-  meta(name='twitter:card', content='summary_large_image')
-  meta(name='twitter:site', content='@GlobalEliteSF')
 
 block append styles
   link(rel='stylesheet', href='../common/glitch.scss')

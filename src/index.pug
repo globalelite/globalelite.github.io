@@ -1,39 +1,13 @@
 extends common/_layout
-include common/_jquery
 
-block append meta
-  - var title = '同人サークル グローバルエリート';
-  - var description = 'グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。';
-  title= title
-  meta(name='description', content=description)
-  meta(property='og:title', content=title)
-  meta(property='og:type', content='website')
-  meta(property='og:image', content=`${pageRootURL}og-image.png`)
-  meta(property='og:site_name', content=title)
-  meta(property='og:description', content=description)
-  meta(name='twitter:card', content='summary_large_image')
-  meta(name='twitter:site', content='@GlobalEliteSF')
+block prepend meta
+  - var pageDescription = 'グローバルエリートは小説同人サークルです。SF同人誌の制作・発行が主な活動です。';
 
 block prepend styles
   link(
     rel='stylesheet',
     href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap'
   )
-  link(rel='stylesheet', href='common/jatyping.scss')
-
-block append body
-  script(type='module', src='scripts.ts')
-
-block append scripts
-  script(type='module', src='common/jquery.jatyping.js')
-  script(type='module', src='splash.js')
-  //- script(
-  //-   src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
-  //-   integrity='sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==',
-  //-   crossorigin='anonymous',
-  //-   referrerpolicy='no-referrer'
-  //- )
-  //- script(src='sketch.js')
 
 block append header
   nav
@@ -44,22 +18,49 @@ block append header
         a(href='#tools') ツールズ
       li
         a(href='#members') メンバー
+      //- # Pixiv従業員セクハラ裁判事件を受けてクローズ
       //- li
       //-   a(href='https://globalelite.booth.pm/', target='_blank')
       //-     | ショップ
       //-     i.fas.fa-external-link-alt(aria-hidden='true')
 
+//- # 動画
+//- block prepend contents
+//-   .splash
+//-     .splash-contents
+//-       video(src='ge.mp4', loop, muted, autoplay)
+
+//- # アニメーション
+//- block append scripts
+//-   script(
+//-     src='https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js',
+//-     integrity='sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==',
+//-     crossorigin='anonymous',
+//-     referrerpolicy='no-referrer'
+//-   )
+//-   script(src='sketch.js')
+
+//- block prepend contents
+//-   .splash
+//-     .splash-contents
+//-       a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
+
+//- # テキスト
+block append styles
+  link(rel='stylesheet', href='common/jatyping.scss')
+
+block append scripts
+  script(type='module', src='common/jquery.jatyping.js')
+  script.
+    (() => {
+      const $typing = $('.splash-contents-text [data-jatyping]').html('&nbsp;');
+      $(() => {
+        if ($typing.length) $('.splash-contents-text').jatyping();
+      });
+    })();
+
 block prepend contents
   .splash
-    //- .splash-contents
-    //-   video(src='ge.mp4', loop, muted, autoplay)
-    //- .splash-contents
-    //-   a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-    //- .splash-contents
-    //-   .splash-contents-text
-    //-     p
-    //-       a(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
-    //-         big 5/29 カ-29
     .splash-contents
       .splash-contents-text
         p
@@ -71,6 +72,9 @@ block prepend contents
                 [['はじまる！！！'], [['始まる'], ['！！！']]],
               ])
             ) 来春新たなタスクが始まる！！！
+
+block append scripts
+  script(type='module', src='scripts.ts')
 
 block append main
   article
@@ -553,6 +557,7 @@ block append contents
     ul
       li
         a(href='/resources/') ロゴ・エンブレムリソース
+      //- # TODO
       //- li
       //-   a(href='#') 小説記法チェック
       //- li
@@ -564,7 +569,7 @@ block append contents
   aside
     h2#members メンバー
     dl
-      dt 髙𫝶創
+      dt 髙座創
       dd
         | 最高サークル責任者。
         ul
@@ -625,4 +630,4 @@ block prepend footer
   nav
     ul
       li
-        a(href='https://twitter.com/GlobalEliteSF', target='_blank') Twitter
+        a(href='https://twitter.com/GlobalEliteSF', target='_blank') 𝕏（旧Twitter）

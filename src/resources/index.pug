@@ -1,8 +1,10 @@
 extends ../common/_layout
-include ../common/_jquery
 
-block append meta
-  title リソース | グローバルエリート
+block prepend meta
+  - var pageURL = '/resources/';
+  - var pageTitle = 'リソース';
+
+block ogp
 
 block append styles
   link(rel='stylesheet', href='styles.scss')

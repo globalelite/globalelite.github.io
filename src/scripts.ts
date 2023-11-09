@@ -5,6 +5,7 @@ document.querySelectorAll('main>article').forEach((article) => {
     return;
   }
 
+  // 作品タイトルの移動
   const dt = document.createElement('dt');
   dt.appendChild(document.createTextNode('タイトル'));
   dl.insertBefore(dt, dl.firstChild);
@@ -13,8 +14,9 @@ document.querySelectorAll('main>article').forEach((article) => {
   while (h2.firstChild) dd.appendChild(h2.firstChild);
   dl.insertBefore(dd, dt.nextSibling);
   (h2.parentNode as HTMLElement).id = h2.id;
-  h2.parentNode.removeChild(h2);
+  h2.parentNode!.removeChild(h2);
 
+  // サムネイル下への電子版リンクコピー
   const figure = article.querySelector('figure');
   if (!figure) {
     return;
