@@ -59,7 +59,7 @@ function gameBox() {
         x + xDiff,
         -height * 0.2 + random(-155, 155),
         x + xDiff,
-        height * 0.2 + random(-155, 155)
+        height * 0.2 + random(-155, 155),
       );
 
       stroke(190, 100, 100, 50);
@@ -68,7 +68,7 @@ function gameBox() {
         x + xDiff,
         -height * 0.2 + random(-155, 155),
         x + xDiff,
-        height * 0.2 + random(-155, 155)
+        height * 0.2 + random(-155, 155),
       );
     }
   }
@@ -83,7 +83,7 @@ function gameBox() {
         -width * 0.2 + random(-155, 155),
         y + random(-8, 8),
         width * 0.2 + random(-155, 155),
-        y + random(-8, 8)
+        y + random(-8, 8),
       );
 
       stroke(190, 100, 100, 50);
@@ -91,7 +91,7 @@ function gameBox() {
         -width * 0.2 + random(-155, 155),
         y + random(-8, 8),
         width * 0.2 + random(-155, 155),
-        y + random(-8, 8)
+        y + random(-8, 8),
       );
     }
   }

@@ -34,7 +34,7 @@
   $.when(
     $.get({ url: require('../emblem.svg'), dataType: 'xml' }),
     $.get({ url: require('../emblem-ge.svg'), dataType: 'xml' }),
-    $.get({ url: require('../logo.svg'), dataType: 'xml' })
+    $.get({ url: require('../logo.svg'), dataType: 'xml' }),
   ).then(([emblemNode], [emblemGeNode], [logoNode]) => {
     const emblemData = getPathData(emblemNode);
     const emblemGeData = getPathData(emblemGeNode);
@@ -60,7 +60,7 @@
             logoData.path,
             createSVGMatrix()
               .translate(emblemData.width + gapSize, (emblemData.height - logoHeight) / 2)
-              .scale(logoScale)
+              .scale(logoScale),
           );
           return {
             width: emblemData.width + gapSize + logoData.width * logoScale,
@@ -80,13 +80,13 @@
             emblemData.path,
             createSVGMatrix()
               .translate((emblemData.height - emblemData.width * emblemScale) / 2, 0)
-              .scale(emblemScale)
+              .scale(emblemScale),
           );
           path.addPath(
             logoData.path,
             createSVGMatrix()
               .translate(0, emblemData.height - logoHeight)
-              .scale(logoScale)
+              .scale(logoScale),
           );
           return {
             width: emblemData.height,
@@ -105,13 +105,13 @@
             (canvasHeight -
               ((canvasHeight - baseSize * 2) / emblemData.width) * emblemData.height) /
               2,
-            baseSize
+            baseSize,
           );
         case 'emblem-ge': {
           const size = (canvasHeight * calcMarginRatio(emblemGeData)) / 4;
           return toSizeAll(
             (canvasHeight - ((canvasHeight - size) / emblemGeData.width) * emblemGeData.height) / 2,
-            size
+            size,
           );
         }
         case 'vertical':
@@ -137,7 +137,7 @@
           (formNode.autoWidth.checked ? 0 : parseInt(formNode.width.value, 10)) ||
           Math.round(
             ((canvasHeight - padding[0] - padding[2]) / data.height) * data.width +
-              (padding[1] + padding[3])
+              (padding[1] + padding[3]),
           );
 
         if (formNode.autoWidth.checked) {
@@ -159,7 +159,7 @@
         canvasNode.height = canvasHeight;
         const scale = Math.min(
           (canvasWidth - padding[1] - padding[3]) / data.width,
-          (canvasHeight - padding[0] - padding[2]) / data.height
+          (canvasHeight - padding[0] - padding[2]) / data.height,
         );
         const ctx = canvasNode.getContext('2d');
         if (bgColor) {
@@ -174,9 +174,9 @@
           mtx
             .translate(
               padding[3] + (canvasNode.width - padding[1] - padding[3] - data.width * scale) / 2,
-              padding[0] + (canvasNode.height - padding[0] - padding[2] - data.height * scale) / 2
+              padding[0] + (canvasNode.height - padding[0] - padding[2] - data.height * scale) / 2,
             )
-            .scale(scale)
+            .scale(scale),
         );
         ctx.fill(path);
         return false;

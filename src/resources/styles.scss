@@ -55,7 +55,9 @@ $pattern-size: 15px;
       $pattern2 75%,
       $pattern2
     );
-  background-position: 0 0, $pattern-size $pattern-size;
+  background-position:
+    0 0,
+    $pattern-size $pattern-size;
   background-size: ($pattern-size * 2) ($pattern-size * 2);
   text-align: center;
 }

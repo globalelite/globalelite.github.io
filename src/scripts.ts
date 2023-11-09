@@ -22,7 +22,7 @@ document.querySelectorAll('main>article').forEach((article) => {
 
   [...dl.querySelectorAll('dt')]
     .filter(
-      (node) => node.textContent === '電子版' && (dt.nextSibling as HTMLElement).tagName === 'DD'
+      (node) => node.textContent === '電子版' && (dt.nextSibling as HTMLElement).tagName === 'DD',
     )
     .forEach((dt) => {
       (dt.nextSibling as HTMLElement).querySelectorAll('ul').forEach((ul) => {

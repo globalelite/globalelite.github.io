@@ -6,23 +6,22 @@
     "build": "parcel build --no-source-maps 'src/**/!(_)*.{html,pug}'",
     "postbuild": "cp src/og-image.png src/favicon.ico dist",
     "dev": "parcel serve 'src/**/!(_)*.{html,pug}'",
-    "fix": "run-s -c fix:*",
-    "fix:prettier": "prettier --write .",
-    "fix:prettier-package-json": "prettier-package-json --write",
     "lint": "run-s -c lint:*",
     "lint:actionlint": "node-actionlint",
     "lint:prettier": "prettier --check .",
-    "lint:prettier-package-json": "prettier-package-json -l"
+    "lint:prettier-package-json": "prettier-package-json -l",
+    "lint-fix": "run-s -c lint-fix:*",
+    "lint-fix:prettier": "prettier --write .",
+    "lint-fix:prettier-package-json": "prettier-package-json --write"
   },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.5.0",
-    "@parcel/transformer-sass": "^2.5.0",
-    "@prettier/plugin-pug": "^2.0.0",
+    "@parcel/transformer-pug": "^2.10.2",
+    "@parcel/transformer-sass": "^2.10.2",
     "node-actionlint": "^1.2.2",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.5.0",
-    "prettier": "^2.6.2",
-    "prettier-package-json": "^2.6.3",
-    "rimraf": "^3.0.2"
+    "parcel": "^2.10.2",
+    "prettier": "^3.0.3",
+    "prettier-package-json": "^2.8.0",
+    "rimraf": "^5.0.5"
   }
 }

@@ -194,16 +194,16 @@ export const createElement = (tagName: string, classNames: ClassNames): HTMLElem
 export const findCaret = (
   elem: HTMLElement,
   tagName: string,
-  classNames: ClassNames
+  classNames: ClassNames,
 ): HTMLElement | null =>
   elem.querySelector<HTMLElement>(
-    `${tagName}${classNames.filter((cn) => !!cn).map((cn) => `.${cn}`)}`
+    `${tagName}${classNames.filter((cn) => !!cn).map((cn) => `.${cn}`)}`,
   );
 
 export const findOrCreateCaret = (
   elem: HTMLElement,
   tagName: string,
-  classNames: ClassNames
+  classNames: ClassNames,
 ): HTMLElement => findCaret(elem, tagName, classNames) || createElement(tagName, classNames);
 
 interface IMEDisablePattern {
@@ -226,7 +226,7 @@ export type LoosePattern =
   | [IMEEnablePattern['inputs'], IMEEnablePattern['converts']];
 
 const isLooseIMEDisablePattern = (
-  loosePattern: unknown
+  loosePattern: unknown,
 ): loosePattern is IMEDisablePattern['inputs'] =>
   !!(loosePattern && typeof (loosePattern as unknown[])[0] === 'string');
 
@@ -294,7 +294,7 @@ export const clear = (elem: Node): void => {
 export const updateByTypings = (
   node: Text,
   typings: string[],
-  { delay = 0, speed = 20, onStart, onTyping, onFinish, onStopped }: Options
+  { delay = 0, speed = 20, onStart, onTyping, onFinish, onStopped }: Options,
 ): void => {
   new RecursiveFunction<[number]>({
     onStart,
@@ -316,7 +316,7 @@ export const updateByTypings = (
 
 export const removeTextNode = (
   node: Text,
-  { delay, removeDelay, speed, removeSpeed, ...restOptions }: Options = {}
+  { delay, removeDelay, speed, removeSpeed, ...restOptions }: Options = {},
 ): void => {
   const currentText = `${node.nodeValue || ''}`;
   const typings: string[] = [];
@@ -342,7 +342,7 @@ export const removeFromNode = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const delayBySpeed = 1000 / (removeSpeed || speed || 40);
   new RecursiveFunction<[Node | null]>({
@@ -398,13 +398,13 @@ export const remove = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const delayBySpeed = 1000 / (removeSpeed || speed || 40);
   let targetNode = elem.lastChild;
   if (caretTagName) {
     targetNode = elem.appendChild(
-      findOrCreateCaret(elem, caretTagName, [caretClassName])
+      findOrCreateCaret(elem, caretTagName, [caretClassName]),
     ).previousSibling;
   }
 
@@ -450,7 +450,7 @@ export const addTextNode = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   new RecursiveFunction<[number]>({
     onStart,
@@ -516,7 +516,7 @@ export const updateConverts = (
     onTyping,
     onFinish,
     onStopped,
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const convertClassName = getClassName([inputTypingClassName, inputConvertClassName]);
   const defaultClassName = getClassName([inputTypingClassName]);
@@ -546,24 +546,30 @@ export const updateConverts = (
 
       this.next(delayBySpeed);
     },
-  }).call(function init() {
-    while (rootElem.firstChild) rootElem.removeChild(rootElem.firstChild);
+  }).call(
+    function init() {
+      while (rootElem.firstChild) rootElem.removeChild(rootElem.firstChild);
 
-    convertData = converts.map((convert, i) => {
-      const elem = createElement(
-        inputTagName,
-        i ? [inputTypingClassName] : [inputTypingClassName, inputConvertClassName]
-      );
-      const text = elem.appendChild(document.createTextNode(convert[0]));
-      rootElem.appendChild(elem);
-      return [elem, text, convert.slice(1)];
-    });
-    while (convertData[convertData.length - 1] && !convertData[convertData.length - 1][2].length) {
-      convertData.pop();
-    }
+      convertData = converts.map((convert, i) => {
+        const elem = createElement(
+          inputTagName,
+          i ? [inputTypingClassName] : [inputTypingClassName, inputConvertClassName],
+        );
+        const text = elem.appendChild(document.createTextNode(convert[0]));
+        rootElem.appendChild(elem);
+        return [elem, text, convert.slice(1)];
+      });
+      while (
+        convertData[convertData.length - 1] &&
+        !convertData[convertData.length - 1][2].length
+      ) {
+        convertData.pop();
+      }
 
-    this.next(delayBySpeed);
-  }, convertDelay || delay || 0);
+      this.next(delayBySpeed);
+    },
+    convertDelay || delay || 0,
+  );
 };
 
 export const addFromNode = (
@@ -578,7 +584,7 @@ export const addFromNode = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const pattern = toPattern(loosePattern);
 
@@ -630,7 +636,7 @@ export const addToElement = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const delayBySpeed = 1000 / speed;
   let lastPoint: Node;
@@ -676,7 +682,7 @@ export const addToElement = (
 const walkPatternsElem = (
   results: [HTMLElement, LoosePattern[]][],
   elem: HTMLElement,
-  patternsAttributeName: string
+  patternsAttributeName: string,
 ): void => {
   if (elem.hasAttribute(patternsAttributeName)) {
     const patternsJson = elem.getAttribute(patternsAttributeName)!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
@@ -704,7 +710,7 @@ export const add = (
     onFinish,
     onStopped,
     ...restOptions
-  }: Options = {}
+  }: Options = {},
 ): void => {
   const elemAndPatterns: [HTMLElement, LoosePattern[]][] = [];
   walkPatternsElem(elemAndPatterns, rootElem, patternsAttributeName);

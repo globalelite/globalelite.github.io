@@ -37,8 +37,8 @@
         arguments,
         ['patterns', Array.isArray],
         ['complete', 'function'],
-        ['completeDelay', 'number']
-      )
+        ['completeDelay', 'number'],
+      ),
     );
     $.fn.jatyping.assertOptions(options);
 
