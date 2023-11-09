@@ -1,1 +1,0 @@
-$((s=>{s(".splash").css("display","block"),s(".splash img").glitch()}));
