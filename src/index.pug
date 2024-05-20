@@ -46,37 +46,90 @@ block append header
 //-       a#p5canvas(href='https://c.bunfree.net/c/tokyo34/h1/%E3%82%AB/29', target='_blank')
 
 //- # テキスト
-block append styles
-  link(rel='stylesheet', href='common/jatyping.scss')
+//- block append styles
+//-   link(rel='stylesheet', href='common/jatyping.scss')
 
-block append scripts
-  script(type='module', src='common/jquery.jatyping.js')
-  script.
-    (() => {
-      const $typing = $('.splash-contents-text [data-jatyping]').html('&nbsp;');
-      $(() => {
-        if ($typing.length) $('.splash-contents-text').jatyping();
-      });
-    })();
+//- block append scripts
+//-   script(type='module', src='common/jquery.jatyping.js')
+//-   script.
+//-     (() => {
+//-       const $typing = $('.splash-contents-text [data-jatyping]').html('&nbsp;');
+//-       $(() => {
+//-         if ($typing.length) $('.splash-contents-text').jatyping();
+//-       });
+//-     })();
 
 block prepend contents
   .splash
     .splash-contents
       .splash-contents-text
         p
-          a(href='/task2/')
-            big(
-              data-jatyping=JSON.stringify([
-                [['らいしゅん'], [['来春']]],
-                [['あらたなたすくが'], [['新たな'], ['タスクが']]],
-                [['はじまる！！！'], [['始まる'], ['！！！']]],
-              ])
-            ) 来春新たなタスクが始まる！！！
+          a(href='https://www.unrwa.org/japan')
+            big 🍉
 
 block append scripts
   script(type='module', src='scripts.ts')
 
 block append main
+  article
+    h2#ge9 STATEMENT FOR GAZA
+
+    figure
+      img(
+        src='https://assets-c.bunfree.net/paperclip/products/pictures/8c6fc3e793cb663c6ecbba11fe9c3416c705f77f_large.png?1716218386',
+        width=176,
+        alt=''
+      )
+
+    dl
+      dt ジャンル
+      dd 同人小説テーマアンソロジー
+      dt 紹介
+      dd
+        | パレスチナ・ガザ地区でイスラエルによる虐殺が行われている。この現実、支配の構造、その全てに抗うために四つのストーリーを提示する。現在のガザと沖縄を交互に見やり、何ができるのか模索する作者の苦悩。科学を愛する者の良心の喪失。福祉の最前線で現出する歪んだ世界に立ち向かう怒り。 そして、「沈黙の艦隊」に乗り込んだジャーナリストが歩む平和への旅路。 ——未来を望むために「今」を書く。暴力ではなく言葉が、物語が、平和の礎になることを信じて。我々はガザ虐殺に断固として反対する。
+        br
+        a(href='https://twitter.com/search?q=%23FreePalestine') #FreePalestine
+        = ' '
+        a(href='https://twitter.com/search?q=%23StopGenocideInGaza') #StopGenocideInGaza
+        = ' '
+        a(href='https://twitter.com/search?q=%23CeasefireNOW') #CeasefireNOW
+      dt 収録作品
+      dd
+        ol
+          li
+            a(href='https://twitter.com/GlobalEliteSF/status/1790713703912075540', target='_blank') コールアンドレスポンス
+            | （維嶋津）
+          li
+            a(href='https://twitter.com/GlobalEliteSF/status/1791064919917637719', target='_blank') 君なりに頑張ってきた君が負けるということ
+            | （架旗透）
+          li
+            a(href='https://twitter.com/GlobalEliteSF/status/1791429013342507482', target='_blank') EMPIRE! EMPIRE!
+            | （東京ニトロ）
+          li
+            a(href='https://twitter.com/GlobalEliteSF/status/1791698583059898633', target='_blank') 無垢の行進
+            | （髙𫝶創）
+      dt 刊行日
+      dd 二〇二四年五月十九日
+      //- dt 電子版
+      //- dd
+      //-   ul
+      //-     li
+      //-       a.btn.btn-amazon(
+      //-         href='https://www.amazon.co.jp/dp/B0BFFKLDSF?tag=globalelitesf-22',
+      //-         target='_blank'
+      //-       )
+      //-         i.fab.fa-amazon(aria-hidden='true')
+      //-         | Kindle Store
+      dt 書籍版
+      dd
+        ol
+          li
+            a(href='https://bunfree.net/event/tokyo38/', target='_blank') 第三十四回文学フリマ東京
+            | にて初版60部を1000円にて頒布（
+            a(href='https://c.bunfree.net/p/tokyo38/38759', target='_blank') 文学フリマWebカタログ
+            | ）、
+            a(href='https://twitter.com/GlobalEliteSF/status/1792538229876703473') 売上全額をUNRWA（国連パレスチナ難民救済事業機関）に寄付
+            | 。
   article
     h2#ge8 WORK 鯨の仔
 
